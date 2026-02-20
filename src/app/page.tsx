@@ -93,23 +93,51 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-6">
                 <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.frontendSkills}</h3>
                   <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
-                    <li>React.js &amp; Next.js</li>
-                    <li>TypeScript</li>
-                    <li>Tailwind CSS</li>
-                    <li>Framer Motion</li>
+                    <li>JavaScript</li>
+                    <li>React Native</li>
+                    <li>Next.js</li>
+                    <li>React.js</li>
                   </ul>
                 </div>
                 <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.backendSkills}</h3>
                   <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
-                    <li>Node.js &amp; Express</li>
-                    <li>Prisma ORM</li>
-                    <li>PostgreSQL / MySQL</li>
-                    <li>Docker &amp; DevOps</li>
+                    <li>Laravel</li>
+                    <li>Node.js</li>
+                    <li>Bun.js</li>
+                    <li>CodeIgniter</li>
+                    <li>Python</li>
+                    <li>Java Script</li>
+                    <li>PHP</li>
+                  </ul>
+                </div>
+                <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.databaseSkills}</h3>
+                  <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
+                    <li>MySQL</li>
+                    <li>PostgreSQL</li>
+                    <li>Redis</li>
+                    <li>SQLite</li>
+                    <li>Supabase</li>
+                    <li>Firebase</li>
+                    <li>MongoDB</li>
+                  </ul>
+                </div>
+                <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.toolsSkills}</h3>
+                  <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
+                    <li>Visual Studio Code</li>
+                    <li>Ubuntu Server</li>
+                    <li>Ms. Office</li>
+                    <li>Docker</li>
+                    <li>Nginx</li>
+                    <li>Git</li>
+                    <li>CI/CD</li>
+                    <li>N8N</li>
                   </ul>
                 </div>
               </div>
@@ -165,7 +193,7 @@ export default function Home() {
 
             <div className="flex flex-col gap-4 max-w-md mx-auto">
               <a
-                href="mailto:marco@example.com"
+                href="mailto:alvinade998@gmail.com"
                 className="flex items-center justify-center gap-3 p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 hover:scale-105 transition-all group shadow-sm dark:shadow-none"
               >
                 <span className="font-semibold text-lg group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">{t.contact.emailMe}</span>

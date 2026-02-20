@@ -21,12 +21,14 @@ export const translations = {
         about: {
             title: 'About Me',
             intro: (name: string) =>
-                `Hello! I'm ${name}, a passionate Full Stack Developer with a knack for building robust and scalable web applications. I love solving complex problems and turning ideas into reality through code.`,
+                `Hi! I'm ${name}, a motivated and detail-oriented Full Stack Developer with hands-on experience in developing web and mobile applications using Laravel, React Native, and other modern technologies. I have a strong passion for learning new tools and technologies while continuously improving my technical skills.`,
             journeyTitle: 'My Journey',
             journeyText:
-                'I started my coding journey exploring simple HTML & CSS, and have since deep-dived into the modern JavaScript ecosystem. My expertise lies in React, Next.js, Node.js, and database management. I am constantly learning new technologies to stay at the forefront of web development.',
-            frontendSkills: 'Frontend Skills',
-            backendSkills: 'Backend Skills',
+                'Proven ability to work independently as well as in teams. Skilled in problem-solving and producing clean, efficient code to meet project goals. Enthusiastic about contributing to innovative development projects and growing with forward-thinking companies.',
+            frontendSkills: 'Frontend',
+            backendSkills: 'Backend',
+            databaseSkills: 'Database',
+            toolsSkills: 'Tools',
         },
 
         // Career
@@ -105,12 +107,14 @@ export const translations = {
         about: {
             title: 'Tentang Saya',
             intro: (name: string) =>
-                `Halo! Saya ${name}, seorang Full Stack Developer yang bersemangat dalam membangun aplikasi web yang kokoh dan skalabel. Saya suka memecahkan masalah kompleks dan mewujudkan ide menjadi kenyataan melalui kode.`,
+                `Halo! Saya ${name}, seorang Full Stack Developer yang termotivasi dan berorientasi pada detail dengan pengalaman langsung dalam mengembangkan aplikasi web dan mobile menggunakan Laravel, React Native, dan teknologi modern lainnya. Memiliki semangat belajar tinggi terhadap alat dan teknologi baru serta terus meningkatkan kemampuan teknis.`,
             journeyTitle: 'Perjalanan Saya',
             journeyText:
-                'Saya memulai perjalanan coding dengan mempelajari HTML & CSS sederhana, dan sejak itu mendalami ekosistem JavaScript modern. Keahlian saya terletak pada React, Next.js, Node.js, dan manajemen database. Saya terus belajar teknologi baru untuk tetap berada di garis depan pengembangan web.',
-            frontendSkills: 'Keahlian Frontend',
-            backendSkills: 'Keahlian Backend',
+                'Terbukti mampu bekerja secara mandiri maupun dalam tim. Mahir dalam pemecahan masalah dan menghasilkan kode yang bersih dan efisien untuk memenuhi tujuan proyek. Antusias untuk berkontribusi dalam proyek pengembangan yang inovatif dan tumbuh bersama perusahaan yang berpikiran maju.',
+            frontendSkills: 'Frontend',
+            backendSkills: 'Backend',
+            databaseSkills: 'Database',
+            toolsSkills: 'Tools',
         },
 
         // Career
@@ -180,6 +184,8 @@ export interface Translations {
         journeyText: string;
         frontendSkills: string;
         backendSkills: string;
+        databaseSkills: string;
+        toolsSkills: string;
     };
     career: { title: string; subtitle: string; work: string; education: string };
     portfolio: { title: string; github: string; liveDemo: string };
