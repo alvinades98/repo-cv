@@ -6,6 +6,7 @@ export const translations = {
         nav: {
             home: 'Home',
             about: 'About',
+            career: 'Career',
             portfolio: 'Portfolio',
             contact: 'Contact',
         },
@@ -26,6 +27,14 @@ export const translations = {
                 'I started my coding journey exploring simple HTML & CSS, and have since deep-dived into the modern JavaScript ecosystem. My expertise lies in React, Next.js, Node.js, and database management. I am constantly learning new technologies to stay at the forefront of web development.',
             frontendSkills: 'Frontend Skills',
             backendSkills: 'Backend Skills',
+        },
+
+        // Career
+        career: {
+            title: 'Career Journey',
+            subtitle: 'A timeline of my professional experience and education.',
+            work: 'Work',
+            education: 'Education',
         },
 
         // Portfolio
@@ -81,6 +90,7 @@ export const translations = {
         nav: {
             home: 'Beranda',
             about: 'Tentang',
+            career: 'Karir',
             portfolio: 'Portofolio',
             contact: 'Kontak',
         },
@@ -101,6 +111,14 @@ export const translations = {
                 'Saya memulai perjalanan coding dengan mempelajari HTML & CSS sederhana, dan sejak itu mendalami ekosistem JavaScript modern. Keahlian saya terletak pada React, Next.js, Node.js, dan manajemen database. Saya terus belajar teknologi baru untuk tetap berada di garis depan pengembangan web.',
             frontendSkills: 'Keahlian Frontend',
             backendSkills: 'Keahlian Backend',
+        },
+
+        // Career
+        career: {
+            title: 'Perjalanan Karir',
+            subtitle: 'Timeline pengalaman profesional dan pendidikan saya.',
+            work: 'Kerja',
+            education: 'Pendidikan',
         },
 
         // Portfolio
@@ -153,7 +171,7 @@ export const translations = {
 };
 
 export interface Translations {
-    nav: { home: string; about: string; portfolio: string; contact: string };
+    nav: { home: string; about: string; career: string; portfolio: string; contact: string };
     hero: { contactMe: string; viewWork: string };
     about: {
         title: string;
@@ -163,6 +181,7 @@ export interface Translations {
         frontendSkills: string;
         backendSkills: string;
     };
+    career: { title: string; subtitle: string; work: string; education: string };
     portfolio: { title: string; github: string; liveDemo: string };
     contact: { title: string; description: string; emailMe: string };
     game: {

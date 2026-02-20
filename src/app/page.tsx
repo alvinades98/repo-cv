@@ -8,6 +8,7 @@ import { PROJECTS } from '@/lib/data';
 import ScrollReveal from '@/components/ScrollReveal';
 import MemoryGame from '@/components/MemoryGame';
 import TextHoverEffect from '@/components/TextHoverEffect';
+import CareerTimeline from '@/components/CareerTimeline';
 import { useLanguage } from '@/components/LanguageProvider';
 
 export default function Home() {
@@ -113,6 +114,21 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Career Timeline Section */}
+      <section id="career" className="py-24">
+        <div className="container mx-auto px-4">
+          <ScrollReveal>
+            <h2 className="text-4xl font-bold mb-4 text-center text-blue-600 dark:text-blue-400">
+              {t.career.title}
+            </h2>
+            <p className="text-center text-gray-500 dark:text-gray-400 mb-16 max-w-xl mx-auto">
+              {t.career.subtitle}
+            </p>
+            <CareerTimeline />
           </ScrollReveal>
         </div>
       </section>

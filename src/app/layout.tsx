@@ -6,6 +6,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import ThemeProvider from "@/components/ThemeProvider";
 import LanguageProvider from "@/components/LanguageProvider";
 import CursorDust from "@/components/CursorDust";
+import CustomCursor from "@/components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +56,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <LanguageProvider>
+            <CustomCursor />
             <CursorDust />
             <LoadingScreen />
             <Navbar />
