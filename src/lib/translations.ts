@@ -42,7 +42,7 @@ export const translations = {
         // Portfolio
         portfolio: {
             title: 'My Projects',
-            github: 'GitHub',
+            gitlab: 'GitLab',
             liveDemo: 'Live Demo',
         },
 
@@ -128,7 +128,7 @@ export const translations = {
         // Portfolio
         portfolio: {
             title: 'Proyek Saya',
-            github: 'GitHub',
+            gitlab: 'GitLab',
             liveDemo: 'Demo Langsung',
         },
 
@@ -188,7 +188,7 @@ export interface Translations {
         toolsSkills: string;
     };
     career: { title: string; subtitle: string; work: string; education: string };
-    portfolio: { title: string; github: string; liveDemo: string };
+    portfolio: { title: string; gitlab: string; liveDemo: string };
     contact: { title: string; description: string; emailMe: string };
     game: {
         title: string;

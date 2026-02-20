@@ -4,7 +4,7 @@ import { Project } from '@/lib/data';
 import { useLanguage } from './LanguageProvider';
 
 export default function ProjectCard({ project }: { project: Project }) {
-    const { t } = useLanguage();
+    const { t, locale } = useLanguage();
 
     return (
         <div className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 group flex flex-col h-full shadow-sm dark:shadow-none">
@@ -12,15 +12,15 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <div className="w-full h-48 mb-4 rounded-lg overflow-hidden">
                     <img
                         src={project.imageUrl}
-                        alt={project.title}
+                        alt={project.title[locale]}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                 </div>
             )}
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
-                {project.title}
+                {project.title[locale]}
             </h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-4 line-clamp-3 flex-grow">{project.description}</p>
+            <p className="text-gray-500 dark:text-gray-400 mb-4 line-clamp-3 flex-grow">{project.description[locale]}</p>
 
             <div className="flex flex-wrap gap-2 mb-6">
                 {project.techStack.split(',').map((tech) => (
@@ -41,7 +41,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                         rel="noopener noreferrer"
                         className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors flex items-center gap-2"
                     >
-                        {t.portfolio.github}
+                        {t.portfolio.gitlab}
                     </a>
                 )}
                 {project.demoUrl && (

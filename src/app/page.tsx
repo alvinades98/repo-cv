@@ -13,7 +13,7 @@ import { useLanguage } from '@/components/LanguageProvider';
 
 export default function Home() {
   const projects = PROJECTS;
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-gray-900 dark:text-white selection:bg-blue-500/30 transition-colors duration-300">
@@ -30,8 +30,8 @@ export default function Home() {
                   .slice(0, 3)
                   .map(p => ({
                     src: p.imageUrl!,
-                    alt: p.title,
-                    title: p.title
+                    alt: p.title[locale],
+                    title: p.title[locale]
                   }))
                 }
               />
@@ -93,7 +93,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.frontendSkills}</h3>
                   <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
@@ -205,7 +205,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 hover:scale-105 transition-all group shadow-sm dark:shadow-none"
               >
-                <span className="font-semibold text-lg group-hover:text-gray-900 dark:group-hover:text-white transition-colors">GitHub</span>
+                <span className="font-semibold text-lg group-hover:text-gray-900 dark:group-hover:text-white transition-colors">GitLab</span>
               </a>
 
               <a
