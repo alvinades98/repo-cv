@@ -15,6 +15,7 @@ export const translations = {
         hero: {
             contactMe: 'Contact Me',
             viewWork: 'View Work',
+            description: 'A motivated and detail-oriented Full Stack Developer with experience in Laravel, React Native, and other modern technologies.',
         },
 
         // About
@@ -101,6 +102,7 @@ export const translations = {
         hero: {
             contactMe: 'Hubungi Saya',
             viewWork: 'Lihat Karya',
+            description: 'Full Stack Developer yang termotivasi dan berorientasi pada detail, berpengalaman dalam Laravel, React Native, dan teknologi modern lainnya.',
         },
 
         // About
@@ -176,7 +178,7 @@ export const translations = {
 
 export interface Translations {
     nav: { home: string; about: string; career: string; portfolio: string; contact: string };
-    hero: { contactMe: string; viewWork: string };
+    hero: { contactMe: string; viewWork: string; description: string };
     about: {
         title: string;
         intro: (name: string) => string;

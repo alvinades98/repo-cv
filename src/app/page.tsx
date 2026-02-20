@@ -51,7 +51,7 @@ export default function Home() {
                 <TextHoverEffect text={APP_CONFIG.portfolioTitle} />
               </h1>
               <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed">
-                {APP_CONFIG.portfolioDescription}
+                {t.hero.description}
               </p>
 
               <div className="flex gap-4 justify-center pt-8">
