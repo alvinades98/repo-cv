@@ -47,7 +47,7 @@ export default function Home() {
                 />
               </div>
 
-              <h1 className="text-6xl md:text-7xl font-bold">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
                 <TextHoverEffect text={APP_CONFIG.portfolioTitle} />
               </h1>
               <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed">
