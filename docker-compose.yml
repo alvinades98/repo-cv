@@ -2,9 +2,9 @@ services:
   app:
     build: .
     ports:
-      - "3001:3000"
+      - "3001:3001"
     volumes:
       - .:/app
     environment:
       - NODE_ENV=development
-    command: /bin/sh -c "bun install && bun run dev"
+    command: /bin/sh -c "bun install && bun run dev -- -p 3001"
