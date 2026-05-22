@@ -15,8 +15,6 @@ RUN bun install --frozen-lockfile
 
 COPY . .
 
-RUN bunx prisma generate --schema=src/generated/prisma/schema.prisma
-
 RUN bun run build
 
 FROM oven/bun:latest AS runner
@@ -35,8 +33,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 COPY --from=deps /app/node_modules ./node_modules
-
-COPY --from=builder /app/src/generated/prisma ./src/generated/prisma
 
 USER nextjs
 
