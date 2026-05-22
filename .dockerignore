@@ -1,0 +1,16 @@
+node_modules
+.git
+.gitignore
+.env
+.next
+Dockerfile
+Dockerfile.prod
+docker-compose.yml
+docker-compose.prod.yml
+README.md
+.eslintrc*
+eslint.config.mjs
+postcss.config.mjs
+tailwind.config.ts
+.agent
+promp.md

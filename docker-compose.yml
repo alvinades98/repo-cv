@@ -2,9 +2,10 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "4321:4321"
     volumes:
       - .:/app
     environment:
       - NODE_ENV=development
+      - PORT=4321
     command: /bin/sh -c "bun install && bun run dev"
