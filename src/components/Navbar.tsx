@@ -19,6 +19,7 @@ export default function Navbar() {
                 <div className="hidden md:flex gap-8">
                     <NavLink href="#home">{t.nav.home}</NavLink>
                     <NavLink href="#about">{t.nav.about}</NavLink>
+                    <NavLink href="#career">{t.nav.career}</NavLink>
                     <NavLink href="#portfolio">{t.nav.portfolio}</NavLink>
                     <NavLink href="#contact">{t.nav.contact}</NavLink>
                 </div>

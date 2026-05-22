@@ -37,18 +37,19 @@ body::after {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.08;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 html.light body::after {
-  opacity: 0.06;
+  opacity: 0.1;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 body.loading {
@@ -77,4 +78,14 @@ body.loading {
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Custom cursor — hide default on desktop */
+@media (hover: hover) and (pointer: fine) {
+
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
 }

@@ -8,11 +8,12 @@ import { PROJECTS } from '@/lib/data';
 import ScrollReveal from '@/components/ScrollReveal';
 import MemoryGame from '@/components/MemoryGame';
 import TextHoverEffect from '@/components/TextHoverEffect';
+import CareerTimeline from '@/components/CareerTimeline';
 import { useLanguage } from '@/components/LanguageProvider';
 
 export default function Home() {
   const projects = PROJECTS;
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-gray-900 dark:text-white selection:bg-blue-500/30 transition-colors duration-300">
@@ -29,8 +30,8 @@ export default function Home() {
                   .slice(0, 3)
                   .map(p => ({
                     src: p.imageUrl!,
-                    alt: p.title,
-                    title: p.title
+                    alt: p.title[locale],
+                    title: p.title[locale]
                   }))
                 }
               />
@@ -46,11 +47,11 @@ export default function Home() {
                 />
               </div>
 
-              <h1 className="text-6xl md:text-7xl font-bold">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
                 <TextHoverEffect text={APP_CONFIG.portfolioTitle} />
               </h1>
               <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 leading-relaxed">
-                {APP_CONFIG.portfolioDescription}
+                {t.hero.description}
               </p>
 
               <div className="flex gap-4 justify-center pt-8">
@@ -92,27 +93,70 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.frontendSkills}</h3>
                   <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
-                    <li>React.js &amp; Next.js</li>
-                    <li>TypeScript</li>
-                    <li>Tailwind CSS</li>
-                    <li>Framer Motion</li>
+                    <li>JavaScript</li>
+                    <li>React Native</li>
+                    <li>Next.js</li>
+                    <li>React.js</li>
                   </ul>
                 </div>
                 <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.backendSkills}</h3>
                   <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
-                    <li>Node.js &amp; Express</li>
-                    <li>Prisma ORM</li>
-                    <li>PostgreSQL / MySQL</li>
-                    <li>Docker &amp; DevOps</li>
+                    <li>Laravel</li>
+                    <li>Node.js</li>
+                    <li>Bun.js</li>
+                    <li>CodeIgniter</li>
+                    <li>Python</li>
+                    <li>Java Script</li>
+                    <li>PHP</li>
+                  </ul>
+                </div>
+                <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.databaseSkills}</h3>
+                  <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
+                    <li>MySQL</li>
+                    <li>PostgreSQL</li>
+                    <li>Redis</li>
+                    <li>SQLite</li>
+                    <li>Supabase</li>
+                    <li>Firebase</li>
+                    <li>MongoDB</li>
+                  </ul>
+                </div>
+                <div className="bg-white dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10 hover:border-blue-500/30 transition-colors shadow-sm dark:shadow-none">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{t.about.toolsSkills}</h3>
+                  <ul className="list-disc list-inside space-y-2 text-gray-500 dark:text-gray-400">
+                    <li>Visual Studio Code</li>
+                    <li>Ubuntu Server</li>
+                    <li>Ms. Office</li>
+                    <li>Docker</li>
+                    <li>Nginx</li>
+                    <li>Git</li>
+                    <li>CI/CD</li>
+                    <li>N8N</li>
                   </ul>
                 </div>
               </div>
             </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Career Timeline Section */}
+      <section id="career" className="py-24">
+        <div className="container mx-auto px-4">
+          <ScrollReveal>
+            <h2 className="text-4xl font-bold mb-4 text-center text-blue-600 dark:text-blue-400">
+              {t.career.title}
+            </h2>
+            <p className="text-center text-gray-500 dark:text-gray-400 mb-16 max-w-xl mx-auto">
+              {t.career.subtitle}
+            </p>
+            <CareerTimeline />
           </ScrollReveal>
         </div>
       </section>
@@ -149,7 +193,7 @@ export default function Home() {
 
             <div className="flex flex-col gap-4 max-w-md mx-auto">
               <a
-                href="mailto:marco@example.com"
+                href="mailto:alvinade998@gmail.com"
                 className="flex items-center justify-center gap-3 p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 hover:scale-105 transition-all group shadow-sm dark:shadow-none"
               >
                 <span className="font-semibold text-lg group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">{t.contact.emailMe}</span>
@@ -161,7 +205,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 p-4 rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/10 hover:scale-105 transition-all group shadow-sm dark:shadow-none"
               >
-                <span className="font-semibold text-lg group-hover:text-gray-900 dark:group-hover:text-white transition-colors">GitHub</span>
+                <span className="font-semibold text-lg group-hover:text-gray-900 dark:group-hover:text-white transition-colors">GitLab</span>
               </a>
 
               <a
