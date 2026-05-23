@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -7,19 +6,10 @@ import ThemeProvider from "@/components/ThemeProvider";
 import LanguageProvider from "@/components/LanguageProvider";
 import CursorDust from "@/components/CursorDust";
 import CustomCursor from "@/components/CustomCursor";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import ParticlesCanvas from "@/components/ParticlesCanvas";
 
 export const metadata: Metadata = {
-  title: "Alvin Ade - Full Stack Developer",
+  title: "Alvin Ade — Full Stack Developer",
   description: "Full Stack Developer specializing in modern web technologies. Building scalable applications with creativity and precision.",
 };
 
@@ -31,6 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=JetBrains+Mono:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -51,18 +47,21 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <ThemeProvider>
           <LanguageProvider>
+            {/* Background layers */}
+            <div className="bg-grid" />
+            <div className="bg-noise" />
+            <ParticlesCanvas />
+
             <CustomCursor />
             <CursorDust />
             <LoadingScreen />
             <Navbar />
-            <main className="pt-16">
+            <div className="pt-16">
               {children}
-            </main>
+            </div>
           </LanguageProvider>
         </ThemeProvider>
       </body>
