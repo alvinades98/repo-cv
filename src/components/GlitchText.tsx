@@ -8,8 +8,10 @@ interface GlitchTextProps {
 
 export default function GlitchText({ text, className = '', as: Tag = 'span' }: GlitchTextProps) {
   return (
-    <Tag className={`glitch-text ${className}`} data-text={text}>
-      {text}
-    </Tag>
+    <span className="inline-block overflow-hidden">
+      <Tag className={`glitch-text ${className}`} data-text={text}>
+        {text}
+      </Tag>
+    </span>
   );
 }

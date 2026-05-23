@@ -1,5 +1,6 @@
 node_modules
 .next
+.next-old*
 .git
 .gitignore
 *.md
@@ -9,3 +10,13 @@ Dockerfile.prod
 docker-compose.yml
 docker-compose.prod.yml
 .env*.local
+.env
+tsconfig.tsbuildinfo
+bun.lock
+*.log
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function AnimatedBackground() {
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" style={{ maxWidth: '100vw' }}>
       {/* Animated diagonal lines */}
       <motion.div
         className="absolute inset-0 opacity-[0.015] dark:opacity-[0.02]"
@@ -25,7 +25,7 @@ export default function AnimatedBackground() {
 
       {/* Subtle floating orbs (very reduced) */}
       <motion.div
-        className="absolute top-[-15%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-br from-magenta/10 to-purple-neon/5 blur-3xl"
+        className="absolute top-[-15%] left-[-10%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-gradient-to-br from-magenta/10 to-purple-neon/5 blur-3xl"
         animate={{
           x: [0, 30, -20, 15, 0],
           y: [0, -25, 15, -30, 0],
@@ -38,7 +38,7 @@ export default function AnimatedBackground() {
         }}
       />
       <motion.div
-        className="absolute top-[40%] right-[-8%] w-[400px] h-[400px] rounded-full bg-gradient-to-br from-cyan-neon/8 to-purple-neon/5 blur-3xl"
+        className="absolute top-[40%] right-[-8%] w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-gradient-to-br from-cyan-neon/8 to-purple-neon/5 blur-3xl"
         animate={{
           x: [0, -20, 30, -15, 0],
           y: [0, 15, -25, 10, 0],

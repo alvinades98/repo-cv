@@ -135,8 +135,8 @@ export default function MemoryGame() {
   return (
     <div className="max-w-lg mx-auto">
       {/* Stats bar */}
-      <div className="flex items-center justify-between mb-6 px-1">
-        <div className="flex gap-4 text-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 px-1 gap-3">
+        <div className="flex flex-wrap gap-2 sm:gap-4 text-sm w-full sm:w-auto">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card border border-white/5">
             <span className="text-[var(--text-muted)] font-mono text-xs">{t.game.moves}</span>
             <span className="font-bold text-magenta font-mono">{moves}</span>
@@ -152,7 +152,7 @@ export default function MemoryGame() {
         </div>
         <button
           onClick={resetGame}
-          className="px-3 py-1.5 text-sm font-medium rounded-lg glass-card hover:scale-105 transition-all text-[var(--text-muted)] hover:text-cyan-neon border border-white/5 hover:border-cyan-neon/30 font-mono"
+          className="px-3 py-1.5 text-sm font-medium rounded-lg glass-card hover:scale-105 transition-all text-[var(--text-muted)] hover:text-cyan-neon border border-white/5 hover:border-cyan-neon/30 font-mono shrink-0"
         >
           {t.game.reset}
         </button>

@@ -33,39 +33,39 @@ export default function Home() {
   const typewriterLines = locale === 'id' ? TYPEWRITER_LINES_ID : TYPEWRITER_LINES_EN;
 
   return (
-    <main className="min-h-screen text-[var(--text-main)] selection:bg-magenta selection:text-black transition-colors duration-300 relative">
+    <main className="min-h-screen text-[var(--text-main)] selection:bg-magenta selection:text-black transition-colors duration-300 relative overflow-x-hidden">
       <AnimatedBackground />
 
       <div className="relative z-10">
         {/* ================== HERO SECTION ================== */}
         <section id="home" className="min-h-screen flex flex-col justify-center pt-16 relative overflow-hidden">
           <div className="container mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 items-center max-w-[1200px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-12 items-center max-w-[1200px] mx-auto">
               {/* Left Content */}
               <ScrollReveal>
-                <div className="space-y-8">
+                <div className="space-y-5 sm:space-y-8">
                   {/* Tag */}
-                  <div className="inline-flex items-center gap-2.5 font-mono text-xs text-cyan-neon uppercase tracking-[0.25em]">
+                  <div className="inline-flex items-center gap-2.5 font-mono text-[10px] sm:text-xs text-cyan-neon uppercase tracking-[0.25em]">
                     <span
-                      className="w-2 h-2 rounded-full bg-cyan-neon"
+                      className="w-2 h-2 rounded-full bg-cyan-neon shrink-0"
                       style={{ boxShadow: '0 0 12px #00F5FF' }}
                     />
-                    SYSTEM ONLINE // VER 2.0.{new Date().getFullYear()}
+                    <span className="break-all">SYSTEM ONLINE // VER 2.0.{new Date().getFullYear()}</span>
                   </div>
 
                   {/* Title */}
-                  <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.95] tracking-tight">
-                    <span className="block" style={{ overflow: 'hidden' }}>
+                  <h1 className="font-display text-[clamp(2.5rem,10vw,7rem)] leading-[0.95] tracking-tight">
+                    <span className="block overflow-hidden">
                       <span className="inline-block bg-gradient-to-b from-white to-[#b8b8d0] bg-clip-text text-transparent">
                         Full Stack
                       </span>
                     </span>
-                    <span className="block" style={{ overflow: 'hidden' }}>
+                    <span className="block overflow-hidden">
                       <span className="inline-block bg-gradient-to-b from-white to-[#b8b8d0] bg-clip-text text-transparent">
                         Developer
                       </span>
                     </span>
-                    <span className="block" style={{ overflow: 'hidden' }}>
+                    <span className="block overflow-hidden">
                       <GlitchText
                         text="Portfolio."
                         className="bg-gradient-to-r from-magenta via-purple-neon to-cyan-neon bg-clip-text text-transparent"
@@ -75,15 +75,15 @@ export default function Home() {
                   </h1>
 
                   {/* Typewriter */}
-                  <Typewriter lines={typewriterLines} className="text-sm" />
+                  <Typewriter lines={typewriterLines} className="text-xs sm:text-sm" />
 
                   {/* Subtitle */}
-                  <p className="text-base md:text-lg leading-[1.7] text-[var(--text-muted)] max-w-[520px] font-light">
+                  <p className="text-sm sm:text-base md:text-lg leading-[1.7] text-[var(--text-muted)] max-w-[520px] font-light break-words">
                     <b className="text-[var(--text-main)] font-medium">{APP_CONFIG.name}</b> — {t.hero.description}
                   </p>
 
                   {/* CTA Buttons */}
-                  <div className="flex gap-4 flex-wrap">
+                  <div className="flex gap-3 sm:gap-4 flex-wrap">
                     <CyberButton variant="primary" href="#contact">
                       {t.hero.contactMe} →
                     </CyberButton>
@@ -115,19 +115,19 @@ export default function Home() {
         </section>
 
         {/* ================== ABOUT / CORE SYSTEMS ================== */}
-        <section id="about" className="py-24 relative">
+        <section id="about" className="py-24 relative overflow-x-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none" />
           <div className="container mx-auto px-6 md:px-12 max-w-[1300px] relative">
             <ScrollReveal>
-              <div className="flex flex-wrap justify-between items-end gap-8 mb-16">
+              <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 lg:gap-8 mb-10 sm:mb-16">
                 <div>
                   <SectionTag text="Core Systems" />
-                  <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] leading-none tracking-tight">
+                  <h2 className="font-display text-[clamp(1.8rem,5vw,4rem)] leading-none tracking-tight">
                     What I Do<br />
                     <span className="stroke-text">Best</span>
                   </h2>
                 </div>
-                <p className="text-[var(--text-muted)] max-w-[580px] leading-[1.7] font-light">
+                <p className="text-[var(--text-muted)] max-w-[580px] leading-[1.7] font-light text-sm sm:text-base">
                   {t.about.intro(APP_CONFIG.name)}
                 </p>
               </div>
@@ -203,17 +203,17 @@ export default function Home() {
         </section>
 
         {/* ================== CAREER TIMELINE ================== */}
-        <section id="career" className="py-24 relative">
+        <section id="career" className="py-24 relative overflow-x-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-neon/[0.02] to-transparent pointer-events-none" />
           <div className="container mx-auto px-6 md:px-12 relative">
             <ScrollReveal>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 sm:mb-16">
                 <SectionTag text="Experience Log" centered />
-                <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] leading-none tracking-tight">
+                <h2 className="font-display text-[clamp(1.8rem,6vw,4rem)] leading-none tracking-tight">
                   Career<br />
                   <span className="stroke-text">Journey</span>
                 </h2>
-                <p className="text-[var(--text-muted)] max-w-[580px] mx-auto mt-4 leading-[1.7] font-light">
+                <p className="text-[var(--text-muted)] max-w-[580px] mx-auto mt-3 sm:mt-4 leading-[1.7] font-light text-sm sm:text-base px-4">
                   {t.career.subtitle}
                 </p>
               </div>
@@ -223,16 +223,16 @@ export default function Home() {
         </section>
 
         {/* ================== PORTFOLIO / VISUAL ARCHIVE ================== */}
-        <section id="portfolio" className="py-24 relative">
+        <section id="portfolio" className="py-24 relative overflow-x-hidden">
           <div className="container mx-auto px-6 md:px-12 relative max-w-[1400px]">
             <ScrollReveal>
-              <div className="text-center mb-16">
+              <div className="text-center mb-10 sm:mb-16">
                 <SectionTag text="Visual Archive" centered />
-                <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] leading-none tracking-tight">
+                <h2 className="font-display text-[clamp(1.8rem,6vw,4rem)] leading-none tracking-tight">
                   Fragments of<br />
                   <span className="stroke-text">Code</span>
                 </h2>
-                <p className="text-[var(--text-muted)] max-w-[580px] mx-auto mt-4 leading-[1.7] font-light">
+                <p className="text-[var(--text-muted)] max-w-[580px] mx-auto mt-3 sm:mt-4 leading-[1.7] font-light text-sm sm:text-base px-4">
                   A collection of projects and experiments built with passion.
                 </p>
               </div>
@@ -249,12 +249,12 @@ export default function Home() {
         </section>
 
         {/* ================== CONTACT / CTA BANNER ================== */}
-        <section id="contact" className="py-24 relative">
+        <section id="contact" className="py-24 relative overflow-x-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-neon/[0.02] to-transparent pointer-events-none" />
           <div className="container mx-auto px-6 md:px-12 relative max-w-[1200px]">
             <ScrollReveal>
               <div
-                className="relative p-10 md:p-16 overflow-hidden"
+                className="relative p-6 sm:p-10 md:p-16 overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255,45,120,0.15), rgba(155,48,255,0.1) 50%, rgba(0,245,255,0.12))',
                   border: '1px solid rgba(255,45,120,0.3)',
@@ -270,23 +270,23 @@ export default function Home() {
                 />
                 {/* Glow orb */}
                 <div
-                  className="absolute w-[400px] h-[400px] rounded-full -top-[200px] -right-[100px] pointer-events-none"
+                  className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full -top-[150px] sm:-top-[200px] -right-[80px] sm:-right-[100px] pointer-events-none"
                   style={{
                     background: 'radial-gradient(circle, rgba(255,45,120,0.4), transparent 70%)',
                     filter: 'blur(40px)',
                   }}
                 />
 
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 sm:gap-10 items-center">
                   <div>
                     <SectionTag text="Limited Access" />
-                    <h2 className="font-display text-[clamp(2rem,4vw,3.4rem)] leading-none mb-4">
+                    <h2 className="font-display text-[clamp(1.6rem,6vw,3.4rem)] leading-none mb-3 sm:mb-4">
                       Get In Touch<br />
                       <span className="bg-gradient-to-r from-cyan-neon to-magenta bg-clip-text text-transparent">
                         Before The Gate Closes.
                       </span>
                     </h2>
-                    <p className="text-[var(--text-muted)] leading-[1.7] mb-6 font-light">
+                    <p className="text-[var(--text-muted)] leading-[1.7] mb-5 sm:mb-6 font-light text-sm sm:text-base break-words">
                       {t.contact.description}
                     </p>
                     <CyberButton variant="primary" href="mailto:alvinade998@gmail.com">
@@ -295,7 +295,7 @@ export default function Home() {
                   </div>
 
                   {/* Contact boxes */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                     <ContactBox
                       label="Email"
                       value="alvinade998@gmail.com"
@@ -324,16 +324,16 @@ export default function Home() {
         </section>
 
         {/* ================== MINI GAME ================== */}
-        <section id="game" className="py-24 relative">
+        <section id="game" className="py-24 relative overflow-x-hidden">
           <div className="container mx-auto px-6 md:px-12 relative">
             <ScrollReveal>
-              <div className="text-center mb-12">
+              <div className="text-center mb-10 sm:mb-12">
                 <SectionTag text="System Test" centered />
-                <h2 className="font-display text-[clamp(2.2rem,5vw,4rem)] leading-none tracking-tight">
+                <h2 className="font-display text-[clamp(1.8rem,6vw,4rem)] leading-none tracking-tight">
                   Memory<br />
                   <span className="stroke-text">Protocol</span>
                 </h2>
-                <p className="text-[var(--text-muted)] max-w-[580px] mx-auto mt-4 leading-[1.7] font-light">
+                <p className="text-[var(--text-muted)] max-w-[580px] mx-auto mt-3 sm:mt-4 leading-[1.7] font-light text-sm sm:text-base px-4">
                   {t.game.description}
                 </p>
               </div>
@@ -343,7 +343,7 @@ export default function Home() {
         </section>
 
         {/* ================== FOOTER ================== */}
-        <footer className="py-10 border-t border-white/5 relative z-10">
+        <footer className="py-10 border-t border-white/5 relative z-10 overflow-x-hidden">
           <div className="container mx-auto px-6 md:px-12 max-w-[1300px] flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="font-display text-xl tracking-wide">
               {APP_CONFIG.name.toUpperCase()}::
@@ -500,7 +500,7 @@ function FeatureCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 900 }}
-      className={`relative p-8 overflow-hidden group min-h-[300px] border border-white/6 transition-all duration-400 ${ac.shadow}`}
+      className={`relative p-5 sm:p-8 overflow-hidden group min-h-[260px] sm:min-h-[300px] border border-white/6 transition-all duration-400 ${ac.shadow}`}
       whileHover={{ scale: 1.02 }}
     >
       {/* Gradient border on hover */}
@@ -515,27 +515,27 @@ function FeatureCard({
         }}
       />
 
-      <div className="corner absolute top-4 right-4 font-mono text-[0.65rem] text-white/20 tracking-[0.2em]">
+      <div className="corner absolute top-3 right-3 sm:top-4 sm:right-4 font-mono text-[0.6rem] sm:text-[0.65rem] text-white/20 tracking-[0.2em]">
         {corner}
       </div>
 
-      <div className="font-mono text-[0.78rem] text-[var(--text-muted)] tracking-[0.2em] mb-6">
+      <div className="font-mono text-[0.7rem] sm:text-[0.78rem] text-[var(--text-muted)] tracking-[0.2em] mb-4 sm:mb-6">
         // FEATURE.0{index + 1}
       </div>
 
       <div
-        className={`w-16 h-16 mb-6 flex items-center justify-center border ${ac.border} bg-gradient-to-br ${ac.bg} to-transparent ${ac.text} relative`}
+        className={`w-12 h-12 sm:w-16 sm:h-16 mb-4 sm:mb-6 flex items-center justify-center border ${ac.border} bg-gradient-to-br ${ac.bg} to-transparent ${ac.text} relative shrink-0`}
       >
         {icon}
       </div>
 
-      <h3 className="font-heading text-2xl tracking-wide mb-3 text-white">{title}</h3>
+      <h3 className="font-heading text-xl sm:text-2xl tracking-wide mb-2 sm:mb-3 text-white break-words">{title}</h3>
 
-      <ul className="space-y-1.5 text-[var(--text-muted)] text-sm font-light">
+      <ul className="space-y-1 text-[var(--text-muted)] text-xs sm:text-sm font-light">
         {items.map((item) => (
-          <li key={item} className="flex items-center gap-2">
-            <span className={`w-1 h-1 rounded-full ${ac.text === 'text-magenta' ? 'bg-magenta' : ac.text === 'text-cyan-neon' ? 'bg-cyan-neon' : 'bg-purple-neon'}`} />
-            {item}
+          <li key={item} className="flex items-center gap-2 break-words">
+            <span className={`w-1 h-1 rounded-full shrink-0 ${ac.text === 'text-magenta' ? 'bg-magenta' : ac.text === 'text-cyan-neon' ? 'bg-cyan-neon' : 'bg-purple-neon'}`} />
+            <span className="break-words">{item}</span>
           </li>
         ))}
       </ul>
@@ -573,7 +573,7 @@ function ContactBox({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={`text-center p-5 border ${borderColors[accent]} bg-[var(--bg-dark)]/60 backdrop-blur-sm relative group transition-all duration-300`}
+      className={`text-center p-4 sm:p-5 border ${borderColors[accent]} bg-[var(--bg-dark)]/60 backdrop-blur-sm relative group transition-all duration-300 min-w-0`}
     >
       <div
         className="absolute top-0 left-0 right-0 h-px"
@@ -582,11 +582,11 @@ function ContactBox({
         }}
       />
       <div
-        className={`font-display text-2xl leading-none mb-2 bg-gradient-to-b ${numColors[accent]} bg-clip-text text-transparent`}
+        className={`font-display text-xl sm:text-2xl leading-none mb-1.5 sm:mb-2 bg-gradient-to-b ${numColors[accent]} bg-clip-text text-transparent break-words`}
       >
         {label}
       </div>
-      <div className="font-mono text-[0.65rem] text-[var(--text-muted)] uppercase tracking-[0.2em]">
+      <div className="font-mono text-[0.6rem] sm:text-[0.65rem] text-[var(--text-muted)] uppercase tracking-[0.15em] sm:tracking-[0.2em] break-all">
         {value}
       </div>
     </a>

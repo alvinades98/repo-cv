@@ -16,6 +16,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 html.light {
@@ -34,6 +41,8 @@ body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body.loading {
@@ -124,13 +133,66 @@ html.light .bg-noise {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes glitch-skew {
-  0% { transform: skew(0deg); }
-  20% { transform: skew(-2deg); }
-  40% { transform: skew(2deg); }
-  60% { transform: skew(-1deg); }
-  80% { transform: skew(1deg); }
-  100% { transform: skew(0deg); }
+@keyframes glitch1 {
+  0%, 5%, 95%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  10% { clip-path: inset(80% 0 5% 0); transform: translate(-3px, 1px); }
+  15% { clip-path: inset(10% 0 60% 0); transform: translate(3px, -1px); }
+  25% { clip-path: inset(40% 0 30% 0); transform: translate(-3px, 2px); }
+  35% { clip-path: inset(15% 0 70% 0); transform: translate(3px, 0); }
+  45% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, -2px); }
+  55% { clip-path: inset(5% 0 85% 0); transform: translate(2px, 1px); }
+  65% { clip-path: inset(55% 0 20% 0); transform: translate(-3px, -1px); }
+  75% { clip-path: inset(25% 0 50% 0); transform: translate(3px, 2px); }
+  85% { clip-path: inset(90% 0 2% 0); transform: translate(-1px, -2px); }
+  90% { clip-path: inset(35% 0 45% 0); transform: translate(2px, 1px); }
+}
+
+@keyframes glitch2 {
+  0%, 8%, 92%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  12% { clip-path: inset(15% 0 75% 0); transform: translate(3px, 0); }
+  18% { clip-path: inset(65% 0 20% 0); transform: translate(-3px, 1px); }
+  28% { clip-path: inset(30% 0 50% 0); transform: translate(3px, -1px); }
+  38% { clip-path: inset(5% 0 85% 0); transform: translate(-2px, 2px); }
+  48% { clip-path: inset(50% 0 30% 0); transform: translate(2px, -2px); }
+  58% { clip-path: inset(80% 0 5% 0); transform: translate(-3px, 1px); }
+  68% { clip-path: inset(20% 0 60% 0); transform: translate(3px, 0); }
+  78% { clip-path: inset(75% 0 10% 0); transform: translate(-2px, -1px); }
+  88% { clip-path: inset(40% 0 45% 0); transform: translate(2px, 2px); }
+}
+
+/* ================== GLITCH TEXT ================== */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, #FF2D78, #9B30FF, #00F5FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  mix-blend-mode: screen;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: 2px 0 #FF2D78;
+  clip-path: inset(0 0 0 0);
+  animation: glitch1 3.2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 #00F5FF;
+  clip-path: inset(0 0 0 0);
+  animation: glitch2 2.6s infinite linear alternate-reverse;
 }
 
 @keyframes glitch1 {

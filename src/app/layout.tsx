@@ -47,7 +47,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden">
         <ThemeProvider>
           <LanguageProvider>
             {/* Background layers */}
@@ -59,7 +59,7 @@ export default function RootLayout({
             <CursorDust />
             <LoadingScreen />
             <Navbar />
-            <div className="pt-16">
+            <div className="pt-16 overflow-x-hidden">
               {children}
             </div>
           </LanguageProvider>

@@ -60,32 +60,32 @@ export default function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
 
-        <div className="p-6">
-          <h3 className="text-lg font-bold text-[var(--text-main)] mb-2 group-hover:text-cyan-neon transition-colors font-display tracking-wide">
+        <div className="p-4 sm:p-6">
+          <h3 className="text-base sm:text-lg font-bold text-[var(--text-main)] mb-2 group-hover:text-cyan-neon transition-colors font-display tracking-wide break-words">
             {project.title[locale]}
           </h3>
-          <p className="text-[var(--text-muted)] mb-4 line-clamp-3 flex-grow text-sm leading-relaxed font-light">
+          <p className="text-[var(--text-muted)] mb-4 line-clamp-3 flex-grow text-sm leading-relaxed font-light break-words">
             {project.description[locale]}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-4 overflow-hidden">
             {project.techStack.split(',').map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-[11px] font-medium rounded-full border border-magenta/20 text-magenta/80 font-mono tracking-wide"
+                className="px-2.5 py-1 text-[10px] sm:text-[11px] font-medium rounded-full border border-magenta/20 text-magenta/80 font-mono tracking-wide whitespace-nowrap"
               >
                 {tech.trim()}
               </span>
             ))}
           </div>
 
-          <div className="flex gap-4 items-center mt-auto font-mono text-xs tracking-wide">
+          <div className="flex gap-4 items-center mt-auto font-mono text-[10px] sm:text-xs tracking-wide overflow-hidden">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--text-muted)] hover:text-cyan-neon transition-colors flex items-center gap-2"
+                className="text-[var(--text-muted)] hover:text-cyan-neon transition-colors flex items-center gap-2 break-all"
               >
                 {t.portfolio.gitlab}
               </a>
@@ -95,7 +95,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan-neon/70 hover:text-cyan-neon transition-colors flex items-center gap-2"
+                className="text-cyan-neon/70 hover:text-cyan-neon transition-colors flex items-center gap-2 break-all"
               >
                 {t.portfolio.liveDemo}
               </a>

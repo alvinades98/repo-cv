@@ -42,14 +42,14 @@ export default function LoadingScreen() {
             }}
           />
 
-          <div className="relative flex flex-col items-center gap-6">
+          <div className="relative flex flex-col items-center gap-6 px-4 overflow-hidden">
             {/* Terminal style greeting */}
-            <div className="flex items-baseline font-mono">
+            <div className="flex items-baseline font-mono overflow-hidden">
               <span className="text-cyan-neon text-sm mr-3 tracking-widest">&gt;</span>
               {greeting.split('').map((letter, index) => (
                 <motion.span
                   key={index}
-                  className="text-5xl md:text-7xl lg:text-8xl font-bold text-[var(--text-main)] inline-block font-display"
+                  className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-[var(--text-main)] inline-block font-display"
                   initial={{ y: 80, opacity: 0, rotateX: 40 }}
                   animate={{ y: 0, opacity: 1, rotateX: 0 }}
                   transition={{
@@ -64,7 +64,7 @@ export default function LoadingScreen() {
               ))}
 
               <motion.span
-                className="text-5xl md:text-7xl lg:text-8xl font-bold inline-block text-magenta"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold inline-block text-magenta"
                 initial={{ y: 80, opacity: 0, scale: 0 }}
                 animate={{ y: 0, opacity: 1, scale: 1 }}
                 transition={{
