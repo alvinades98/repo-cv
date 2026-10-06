@@ -20,13 +20,13 @@ export function useTheme() {
 }
 
 function getSystemTheme(): ResolvedTheme {
-    if (typeof window === 'undefined') return 'dark';
+    if (typeof window === 'undefined') return 'light';
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setThemeState] = useState<Theme>('dark');
-    const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>('dark');
+    const [theme, setThemeState] = useState<Theme>('light');
+    const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>('light');
     const [mounted, setMounted] = useState(false);
 
     // Initialize from localStorage on mount

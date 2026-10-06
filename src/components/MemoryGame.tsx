@@ -133,26 +133,26 @@ export default function MemoryGame() {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="memory-game max-w-lg mx-auto">
       {/* Stats bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 px-1 gap-3">
         <div className="flex flex-wrap gap-2 sm:gap-4 text-sm w-full sm:w-auto">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card border border-white/5">
+          <div className="neo-game-stat flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card">
             <span className="text-[var(--text-muted)] font-mono text-xs">{t.game.moves}</span>
             <span className="font-bold text-magenta font-mono">{moves}</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card border border-white/5">
+          <div className="neo-game-stat flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card">
             <span className="text-[var(--text-muted)] font-mono text-xs">⏱</span>
             <span className="font-bold font-mono text-[var(--text-main)]">{formatTime(timer)}</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card border border-white/5">
+          <div className="neo-game-stat flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card">
             <span className="text-[var(--text-muted)] font-mono text-xs">{t.game.pairs}</span>
             <span className="font-bold text-cyan-neon font-mono">{matches}/{EMOJIS.length}</span>
           </div>
         </div>
         <button
           onClick={resetGame}
-          className="px-3 py-1.5 text-sm font-medium rounded-lg glass-card hover:scale-105 transition-all text-[var(--text-muted)] hover:text-cyan-neon border border-white/5 hover:border-cyan-neon/30 font-mono shrink-0"
+          className="neo-button neo-button--secondary game-reset px-3 py-1.5 text-sm font-medium font-mono shrink-0"
         >
           {t.game.reset}
         </button>
@@ -171,11 +171,9 @@ export default function MemoryGame() {
             key={card.id}
             onClick={() => handleCardClick(card.id)}
             disabled={card.isMatched}
-            className={`aspect-square rounded-xl text-3xl md:text-4xl font-bold transition-all duration-300 border ${
-              card.isFlipped || card.isMatched
-                ? 'glass-card border-cyan-neon/40'
-                : 'bg-gradient-to-br from-magenta to-purple-neon hover:shadow-[0_0_24px_rgba(255,45,120,0.4)] cursor-pointer border-transparent'
-            } ${card.isMatched ? 'opacity-60' : ''}`}
+            className={`neo-game-card aspect-square rounded-xl text-3xl md:text-4xl font-bold transition-all duration-300 ${
+              card.isFlipped || card.isMatched ? 'is-revealed' : ''
+            } ${card.isMatched ? 'is-matched' : ''}`}
             whileHover={!card.isFlipped && !card.isMatched ? { scale: 1.05 } : {}}
             whileTap={!card.isFlipped && !card.isMatched ? { scale: 0.95 } : {}}
             animate={card.isMatched ? { scale: [1, 1.15, 1], rotate: [0, -3, 3, 0] } : {}}
@@ -201,7 +199,7 @@ export default function MemoryGame() {
                   animate={{ rotateY: 0, opacity: 1 }}
                   exit={{ rotateY: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="block text-white/40 text-lg font-mono"
+                  className="block text-lg font-mono"
                 >
                   ?
                 </motion.span>
@@ -218,38 +216,19 @@ export default function MemoryGame() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="mt-6 text-center p-6 rounded-2xl border border-magenta/30"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255,45,120,0.1), rgba(155,48,255,0.1), rgba(0,245,255,0.1))',
-            }}
+            className="neo-card game-win mt-6 text-center p-6"
           >
             <div className="text-4xl mb-2">🎉</div>
             <h3 className="text-xl font-bold text-[var(--text-main)] mb-1 font-display tracking-wide">{t.game.youWon}</h3>
             <p className="text-[var(--text-muted)] mb-4 font-light">
               {t.game.completedIn} <span className="font-bold text-magenta">{moves} {t.game.bestMoves}</span> {t.game.and} <span className="font-bold text-cyan-neon">{formatTime(timer)}</span>
             </p>
-            <CyberButton variant="primary" onClick={resetGame}>
+            <button className="neo-button" onClick={resetGame}>
               {t.game.playAgain}
-            </CyberButton>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  );
-}
-
-// Inline CyberButton for MemoryGame win screen
-function CyberButton({ variant, onClick, children }: { variant: 'primary' | 'ghost'; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`relative inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] px-6 py-3 transition-all duration-300 ${
-        variant === 'primary'
-          ? 'bg-gradient-to-r from-magenta to-purple-neon text-white shadow-[0_0_24px_rgba(255,45,120,0.5)] hover:shadow-[0_0_36px_rgba(255,45,120,0.7)] hover:-translate-y-0.5'
-          : 'bg-transparent text-[var(--text-main)] border border-cyan-neon/40 hover:border-cyan-neon hover:shadow-[inset_0_0_20px_rgba(0,245,255,0.15)]'
-      }`}
-    >
-      {children}
-    </button>
   );
 }

@@ -40,14 +40,9 @@ export default function CareerTimeline() {
   const data = locale === 'id' ? CAREER_DATA_ID : CAREER_DATA_EN;
 
   return (
-    <div className="relative max-w-4xl mx-auto overflow-x-hidden">
+    <div className="relative max-w-4xl mx-auto pr-2 pb-2">
       {/* Center line */}
-      <div
-        className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px"
-        style={{
-          background: 'linear-gradient(180deg, rgba(255,45,120,0.6), rgba(0,245,255,0.3), transparent)',
-        }}
-      />
+      <div className="timeline-line absolute left-6 md:left-1/2 top-0 bottom-0 w-[3px]" />
 
       {data.map((item, index) => {
         const isLeft = index % 2 === 0;
@@ -59,32 +54,17 @@ export default function CareerTimeline() {
               {/* Dot */}
               <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
                 <motion.div
-                  className={`w-4 h-4 md:w-5 md:h-5 rounded-full border-[3px] ${
-                    isEducation
-                      ? 'border-cyan-neon bg-cyan-neon/20'
-                      : 'border-magenta bg-magenta/20'
-                  }`}
-                  style={{
-                    boxShadow: isEducation
-                      ? '0 0 16px rgba(0,245,255,0.5)'
-                      : '0 0 16px rgba(255,45,120,0.5)',
-                  }}
-                  animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                  className={`timeline-dot ${isEducation ? 'timeline-dot--education' : 'timeline-dot--work'}`}
                 />
               </div>
 
               <div className="w-14 sm:w-16 shrink-0 md:hidden" />
 
-              <div className={`md:w-[calc(50%-2rem)] w-full ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
-                <div className="group relative glass-card p-4 sm:p-6 rounded-2xl border border-white/6 hover:border-magenta/30 transition-all duration-300 overflow-hidden">
+              <div className={`min-w-0 flex-1 md:flex-none md:w-[calc(50%_-_2rem)] ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
+                <div className="neo-card glass-card timeline-card group relative p-4 sm:p-6 overflow-hidden">
                   <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
                     <span
-                      className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border font-mono ${
-                        isEducation
-                          ? 'bg-cyan-neon/10 text-cyan-neon border-cyan-neon/20'
-                          : 'bg-magenta/10 text-magenta border-magenta/20'
-                      }`}
+                      className={`timeline-badge text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 font-mono ${isEducation ? 'timeline-badge--education' : 'timeline-badge--work'}`}
                     >
                       {isEducation ? (t.career?.education ?? 'Education') : (t.career?.work ?? 'Work')}
                     </span>
@@ -94,14 +74,14 @@ export default function CareerTimeline() {
                   <h3 className="text-base sm:text-lg font-bold text-[var(--text-main)] mb-1 group-hover:text-cyan-neon transition-colors font-display tracking-wide break-words">
                     {item.role}
                   </h3>
-                  <p className="text-xs sm:text-sm font-medium text-magenta/80 mb-2 sm:mb-3 break-words">{item.company}</p>
+                  <p className="timeline-company text-xs sm:text-sm font-bold mb-2 sm:mb-3 break-words">{item.company}</p>
                   <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-3 sm:mb-4 font-light break-words">{item.description}</p>
 
                   <div className="flex flex-wrap gap-1.5">
                     {item.tech.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] sm:text-[11px] font-medium px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-md border border-white/5 text-[var(--text-muted)] font-mono whitespace-nowrap"
+                        className="timeline-tech text-[10px] sm:text-[11px] font-medium px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[var(--text-muted)] font-mono whitespace-nowrap"
                       >
                         {tag}
                       </span>

@@ -7,14 +7,12 @@ import { APP_CONFIG } from '@/lib/config';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from './LanguageProvider';
-import { useTheme } from './ThemeProvider';
 
 type NavKey = 'home' | 'about' | 'career' | 'portfolio' | 'contact' | 'game';
 const NAV_ITEMS: NavKey[] = ['home', 'about', 'career', 'portfolio', 'contact', 'game'];
 
 export default function Navbar() {
-  const { t } = useLanguage();
-  const { resolvedTheme } = useTheme();
+  const { t, locale } = useLanguage();
   const [activeSection, setActiveSection] = useState<NavKey>('home');
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,71 +33,61 @@ export default function Navbar() {
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isDark = resolvedTheme === 'dark';
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, []);
 
   return (
     <motion.nav
-      className="fixed top-0 w-full z-50 transition-all duration-300"
-      style={{
-        background: scrolled
-          ? isDark
-            ? 'linear-gradient(180deg, rgba(5,6,13,0.85), rgba(5,6,13,0.6))'
-            : 'linear-gradient(180deg, rgba(248,249,252,0.85), rgba(248,249,252,0.6))'
-          : 'linear-gradient(180deg, rgba(5,6,13,0.7), rgba(5,6,13,0))',
-        borderBottom: scrolled
-          ? '1px solid rgba(255,255,255,0.04)'
-          : '1px solid transparent',
-        backdropFilter: 'blur(12px)',
-      }}
+      className={`neo-navbar fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'is-scrolled' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="container mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+      <div className="neo-nav-inner container mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-display tracking-wider gradient-text"
-          style={{ letterSpacing: '0.05em' }}
+          className="neo-logo text-xl font-display tracking-wider"
         >
           {APP_CONFIG.name.toUpperCase()}
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-10 items-center">
+        <div className="neo-nav-links hidden lg:flex gap-8 items-center">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item}
               href={`#${item}`}
-              className="relative font-mono text-xs uppercase tracking-[0.15em] text-[var(--text-muted)] hover:text-cyan-neon transition-colors duration-250 group"
+              className={`neo-nav-link relative font-mono text-xs uppercase tracking-[0.1em] transition-colors duration-250 ${activeSection === item ? 'is-active' : ''}`}
               onClick={() => setMobileOpen(false)}
             >
-              {t.nav[item as keyof typeof t.nav]}
-              <span
-                className="absolute left-0 -bottom-1.5 h-[1px] bg-cyan-neon transition-all duration-300"
-                style={{
-                  width: activeSection === item ? '100%' : '0%',
-                }}
-              />
-              <span className="absolute left-0 -bottom-1.5 h-[1px] bg-cyan-neon w-0 group-hover:w-full transition-all duration-300" />
+              {item === 'game' ? (locale === 'id' ? 'Main' : 'Play') : t.nav[item]}
             </Link>
           ))}
         </div>
 
         {/* Controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <LanguageToggle />
           <ThemeToggle />
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-[var(--text-muted)] hover:text-cyan-neon transition-colors"
+            className="neo-control lg:hidden p-2 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               {mobileOpen ? (
@@ -117,23 +105,18 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden border-t border-white/5 px-6 py-4"
-          style={{
-            background: isDark ? 'rgba(5,6,13,0.95)' : 'rgba(248,249,252,0.95)',
-            backdropFilter: 'blur(12px)',
-          }}
+          id="mobile-navigation"
+          className="neo-mobile-menu lg:hidden px-6 py-4"
         >
           <div className="flex flex-col gap-3">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item}
                 href={`#${item}`}
-                className={`font-mono text-xs uppercase tracking-[0.15em] py-2 transition-colors ${
-                  activeSection === item ? 'text-cyan-neon' : 'text-[var(--text-muted)] hover:text-cyan-neon'
-                }`}
+                className={`neo-nav-link py-2 transition-colors ${activeSection === item ? 'is-active' : ''}`}
                 onClick={() => setMobileOpen(false)}
               >
-                {t.nav[item as keyof typeof t.nav]}
+                {item === 'game' ? (locale === 'id' ? 'Main' : 'Play') : t.nav[item]}
               </Link>
             ))}
           </div>

@@ -42,7 +42,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={cycleTheme}
-      className="p-2 rounded-lg glass-card hover:scale-110 transition-all duration-200 text-[var(--text-muted)] hover:text-cyan-neon border border-white/5 hover:border-cyan-neon/30"
+      className="neo-control p-2 transition-all duration-200"
       title={`Theme: ${getLabel()}`}
       aria-label={`Switch theme (current: ${getLabel()})`}
     >

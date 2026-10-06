@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 interface TypewriterProps {
   lines: string[];
@@ -18,61 +18,57 @@ export default function Typewriter({
   pauseDuration = 1800,
 }: TypewriterProps) {
   const [displayText, setDisplayText] = useState('');
-  const [lineIndex, setLineIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const type = useCallback(() => {
-    const currentLine = lines[lineIndex];
-
-    if (isPaused) {
-      return;
-    }
-
-    if (!isDeleting) {
-      if (charIndex < currentLine.length) {
-        setDisplayText(currentLine.slice(0, charIndex + 1));
-        setCharIndex((prev) => prev + 1);
-      } else {
-        setIsPaused(true);
-        setTimeout(() => {
-          setIsPaused(false);
-          setIsDeleting(true);
-        }, pauseDuration);
-      }
-    } else {
-      if (charIndex > 0) {
-        setDisplayText(currentLine.slice(0, charIndex - 1));
-        setCharIndex((prev) => prev - 1);
-      } else {
-        setIsDeleting(false);
-        setLineIndex((prev) => (prev + 1) % lines.length);
-      }
-    }
-  }, [lines, lineIndex, charIndex, isDeleting, isPaused, pauseDuration]);
 
   useEffect(() => {
-    const timer = setTimeout(
-      type,
-      isDeleting ? deletingSpeed : typingSpeed
-    );
-    return () => clearTimeout(timer);
-  }, [type, isDeleting, deletingSpeed, typingSpeed]);
+    if (!lines.length) return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let timer: ReturnType<typeof setTimeout>;
+    let lineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-  // Start after initial delay
-  useEffect(() => {
-    const initialDelay = setTimeout(() => {
-      setDisplayText(lines[0].slice(0, 1));
-      setCharIndex(1);
-    }, 600);
-    return () => clearTimeout(initialDelay);
-  }, [lines]);
+    const tick = () => {
+      if (media.matches) {
+        setDisplayText(lines[0]);
+        return;
+      }
+      const line = lines[lineIndex];
+      charIndex += deleting ? -1 : 1;
+      setDisplayText(line.slice(0, charIndex));
+      let delay = deleting ? deletingSpeed : typingSpeed;
+      if (!deleting && charIndex >= line.length) {
+        deleting = true;
+        delay = pauseDuration;
+      } else if (deleting && charIndex <= 0) {
+        deleting = false;
+        lineIndex = (lineIndex + 1) % lines.length;
+        delay = typingSpeed;
+      }
+      timer = setTimeout(tick, delay);
+    };
+
+    const restart = () => {
+      clearTimeout(timer);
+      lineIndex = 0;
+      charIndex = 0;
+      deleting = false;
+      timer = setTimeout(tick, 0);
+    };
+    restart();
+    media.addEventListener('change', restart);
+    return () => {
+      clearTimeout(timer);
+      media.removeEventListener('change', restart);
+    };
+  }, [lines, typingSpeed, deletingSpeed, pauseDuration]);
+
+  if (!lines.length) return null;
 
   return (
-    <div className={`font-mono text-sm tracking-wide min-h-[1.4rem] ${className}`}>
-      <span className="text-cyan-neon">{displayText}</span>
-      <span className="text-magenta animate-pulse">_</span>
+    <div className={`font-mono text-sm tracking-wide ${className}`}>
+      <span className="sr-only">{lines[0]}</span>
+      <span className="typewriter-text" aria-hidden="true">{displayText}</span>
+      <span className="typewriter-caret motion-safe:animate-pulse" aria-hidden="true">_</span>
     </div>
   );
 }

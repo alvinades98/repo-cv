@@ -9,8 +9,7 @@ interface SectionTagProps {
 export default function SectionTag({ text, className = '', centered = false }: SectionTagProps) {
   return (
     <div
-      className={`section-tag ${className}`}
-      style={centered ? { justifyContent: 'center' } : undefined}
+      className={`section-tag ${centered ? 'section-tag--centered' : ''} ${className}`}
     >
       {text}
     </div>

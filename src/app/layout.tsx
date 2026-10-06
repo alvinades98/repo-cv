@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import LoadingScreen from "@/components/LoadingScreen";
 import ThemeProvider from "@/components/ThemeProvider";
 import LanguageProvider from "@/components/LanguageProvider";
-import CursorDust from "@/components/CursorDust";
-import CustomCursor from "@/components/CustomCursor";
-import ParticlesCanvas from "@/components/ParticlesCanvas";
 
 export const metadata: Metadata = {
   title: "Alvin Ade — Full Stack Developer",
@@ -24,7 +20,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=JetBrains+Mono:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
           rel="stylesheet"
         />
         {/* Prevent flash of wrong theme */}
@@ -33,33 +29,25 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('theme') || 'dark';
+                  var theme = localStorage.getItem('theme') || 'light';
                   var resolved = theme;
                   if (theme === 'system') {
                     resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                   }
                   document.documentElement.classList.add(resolved);
                 } catch(e) {
-                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.add('light');
                 }
               })();
             `,
           }}
         />
       </head>
-      <body className="antialiased overflow-x-hidden">
+      <body className="antialiased overflow-x-clip neo-ui">
         <ThemeProvider>
           <LanguageProvider>
-            {/* Background layers */}
-            <div className="bg-grid" />
-            <div className="bg-noise" />
-            <ParticlesCanvas />
-
-            <CustomCursor />
-            <CursorDust />
-            <LoadingScreen />
             <Navbar />
-            <div className="pt-16 overflow-x-hidden">
+            <div className="pt-16 overflow-x-clip">
               {children}
             </div>
           </LanguageProvider>

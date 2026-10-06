@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import ProjectCard from '@/components/ProjectCard';
 import { APP_CONFIG } from '@/lib/config';
 import { PROJECTS } from '@/lib/data';
@@ -11,9 +11,8 @@ import GlitchText from '@/components/GlitchText';
 import Typewriter from '@/components/Typewriter';
 import SectionTag from '@/components/SectionTag';
 import CyberButton from '@/components/CyberButton';
-import AnimatedBackground from '@/components/AnimatedBackground';
 import { useLanguage } from '@/components/LanguageProvider';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const TYPEWRITER_LINES_EN = [
   '> initializing dev environment...',
@@ -33,9 +32,7 @@ export default function Home() {
   const typewriterLines = locale === 'id' ? TYPEWRITER_LINES_ID : TYPEWRITER_LINES_EN;
 
   return (
-    <main className="min-h-screen text-[var(--text-main)] selection:bg-magenta selection:text-black transition-colors duration-300 relative overflow-x-hidden">
-      <AnimatedBackground />
-
+    <main className="neo-portfolio min-h-screen text-[var(--text-main)] selection:bg-magenta selection:text-black transition-colors duration-300 relative overflow-x-clip">
       <div className="relative z-10">
         {/* ================== HERO SECTION ================== */}
         <section id="home" className="min-h-screen flex flex-col justify-center pt-16 relative overflow-hidden">
@@ -45,45 +42,42 @@ export default function Home() {
               <ScrollReveal>
                 <div className="space-y-5 sm:space-y-8">
                   {/* Tag */}
-                  <div className="inline-flex items-center gap-2.5 font-mono text-[10px] sm:text-xs text-cyan-neon uppercase tracking-[0.25em]">
-                    <span
-                      className="w-2 h-2 rounded-full bg-cyan-neon shrink-0"
-                      style={{ boxShadow: '0 0 12px #00F5FF' }}
-                    />
+                  <div className="hero-status inline-flex items-center gap-2.5 font-mono text-[10px] sm:text-xs uppercase tracking-[0.15em]">
+                    <span className="hero-status-dot w-2 h-2 shrink-0" />
                     <span className="break-all">SYSTEM ONLINE // VER 2.0.{new Date().getFullYear()}</span>
                   </div>
 
                   {/* Title */}
-                  <h1 className="font-display text-[clamp(2.5rem,10vw,7rem)] leading-[0.95] tracking-tight">
+                  <h1 className="hero-title font-display text-[clamp(2.5rem,10vw,7rem)] leading-[0.95] tracking-tight">
                     <span className="block overflow-hidden">
-                      <span className="inline-block bg-gradient-to-b from-white to-[#b8b8d0] bg-clip-text text-transparent">
+                      <span className="inline-block">
                         Full Stack
                       </span>
                     </span>
                     <span className="block overflow-hidden">
-                      <span className="inline-block bg-gradient-to-b from-white to-[#b8b8d0] bg-clip-text text-transparent">
+                      <span className="inline-block">
                         Developer
                       </span>
                     </span>
                     <span className="block overflow-hidden">
                       <GlitchText
                         text="Portfolio."
-                        className="bg-gradient-to-r from-magenta via-purple-neon to-cyan-neon bg-clip-text text-transparent"
+                        className="hero-title-accent"
                         as="span"
                       />
                     </span>
                   </h1>
 
                   {/* Typewriter */}
-                  <Typewriter lines={typewriterLines} className="text-xs sm:text-sm" />
+                  <Typewriter lines={typewriterLines} className="hero-terminal text-xs sm:text-sm" />
 
                   {/* Subtitle */}
-                  <p className="text-sm sm:text-base md:text-lg leading-[1.7] text-[var(--text-muted)] max-w-[520px] font-light break-words">
+                  <p className="hero-description text-sm sm:text-base md:text-lg leading-[1.7] text-[var(--text-muted)] max-w-[520px] break-words">
                     <b className="text-[var(--text-main)] font-medium">{APP_CONFIG.name}</b> — {t.hero.description}
                   </p>
 
                   {/* CTA Buttons */}
-                  <div className="flex gap-3 sm:gap-4 flex-wrap">
+                  <div className="hero-actions flex gap-3 sm:gap-4 flex-wrap">
                     <CyberButton variant="primary" href="#contact">
                       {t.hero.contactMe} →
                     </CyberButton>
@@ -102,21 +96,14 @@ export default function Home() {
           </div>
 
           {/* Scroll Hint */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 font-mono text-[0.7rem] text-[var(--text-muted)] uppercase tracking-[0.3em]">
+          <div className="neo-scroll-hint absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.2em]">
             <span>Scroll</span>
-            <div
-              className="w-px h-[50px]"
-              style={{
-                background: 'linear-gradient(180deg, #00F5FF, transparent)',
-                animation: 'scroll-down 2s infinite',
-              }}
-            />
+            <div className="scroll-hint-line w-[3px] h-[42px]" />
           </div>
         </section>
 
         {/* ================== ABOUT / CORE SYSTEMS ================== */}
-        <section id="about" className="py-24 relative overflow-x-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none" />
+        <section id="about" className="py-24 relative overflow-x-clip">
           <div className="container mx-auto px-6 md:px-12 max-w-[1300px] relative">
             <ScrollReveal>
               <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 lg:gap-8 mb-10 sm:mb-16">
@@ -187,8 +174,8 @@ export default function Home() {
 
             {/* Journey Card */}
             <ScrollReveal delay={0.2}>
-              <div className="mt-8 glass-card p-8 rounded-2xl group relative overflow-hidden">
-                <div className="corner absolute top-4 right-4 font-mono text-[0.65rem] text-white/20 tracking-[0.2em]">
+              <div className="neo-card glass-card journey-card mt-8 p-8 group relative overflow-hidden">
+                <div className="corner absolute top-4 right-4 font-mono text-[0.65rem] tracking-[0.2em]">
                   JOURNEY_LOG
                 </div>
                 <h3 className="text-2xl font-semibold text-[var(--text-main)] mb-4 font-display tracking-wide">
@@ -203,8 +190,7 @@ export default function Home() {
         </section>
 
         {/* ================== CAREER TIMELINE ================== */}
-        <section id="career" className="py-24 relative overflow-x-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-neon/[0.02] to-transparent pointer-events-none" />
+        <section id="career" className="py-24 relative overflow-x-clip">
           <div className="container mx-auto px-6 md:px-12 relative">
             <ScrollReveal>
               <div className="text-center mb-10 sm:mb-16">
@@ -223,7 +209,7 @@ export default function Home() {
         </section>
 
         {/* ================== PORTFOLIO / VISUAL ARCHIVE ================== */}
-        <section id="portfolio" className="py-24 relative overflow-x-hidden">
+        <section id="portfolio" className="py-24 relative overflow-x-clip">
           <div className="container mx-auto px-6 md:px-12 relative max-w-[1400px]">
             <ScrollReveal>
               <div className="text-center mb-10 sm:mb-16">
@@ -249,40 +235,21 @@ export default function Home() {
         </section>
 
         {/* ================== CONTACT / CTA BANNER ================== */}
-        <section id="contact" className="py-24 relative overflow-x-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-neon/[0.02] to-transparent pointer-events-none" />
+        <section id="contact" className="py-24 relative overflow-x-clip">
           <div className="container mx-auto px-6 md:px-12 relative max-w-[1200px]">
             <ScrollReveal>
               <div
-                className="relative p-6 sm:p-10 md:p-16 overflow-hidden"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255,45,120,0.15), rgba(155,48,255,0.1) 50%, rgba(0,245,255,0.12))',
-                  border: '1px solid rgba(255,45,120,0.3)',
-                }}
+                className="contact-panel relative p-6 sm:p-10 md:p-16 overflow-hidden"
               >
                 {/* Grid pattern inside */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      'repeating-linear-gradient(90deg, rgba(0,245,255,0.06) 0 1px, transparent 1px 30px), repeating-linear-gradient(0deg, rgba(255,45,120,0.04) 0 1px, transparent 1px 30px)',
-                  }}
-                />
-                {/* Glow orb */}
-                <div
-                  className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full -top-[150px] sm:-top-[200px] -right-[80px] sm:-right-[100px] pointer-events-none"
-                  style={{
-                    background: 'radial-gradient(circle, rgba(255,45,120,0.4), transparent 70%)',
-                    filter: 'blur(40px)',
-                  }}
-                />
+                <div className="contact-grid-pattern absolute inset-0 pointer-events-none" />
 
                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 sm:gap-10 items-center">
                   <div>
                     <SectionTag text="Limited Access" />
                     <h2 className="font-display text-[clamp(1.6rem,6vw,3.4rem)] leading-none mb-3 sm:mb-4">
                       Get In Touch<br />
-                      <span className="bg-gradient-to-r from-cyan-neon to-magenta bg-clip-text text-transparent">
+                      <span className="contact-heading-accent">
                         Before The Gate Closes.
                       </span>
                     </h2>
@@ -295,7 +262,7 @@ export default function Home() {
                   </div>
 
                   {/* Contact boxes */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                  <div className="contact-links grid grid-cols-1 gap-3 sm:gap-4">
                     <ContactBox
                       label="Email"
                       value="alvinade998@gmail.com"
@@ -324,7 +291,7 @@ export default function Home() {
         </section>
 
         {/* ================== MINI GAME ================== */}
-        <section id="game" className="py-24 relative overflow-x-hidden">
+        <section id="game" className="py-24 relative overflow-x-clip">
           <div className="container mx-auto px-6 md:px-12 relative">
             <ScrollReveal>
               <div className="text-center mb-10 sm:mb-12">
@@ -343,7 +310,7 @@ export default function Home() {
         </section>
 
         {/* ================== FOOTER ================== */}
-        <footer className="py-10 border-t border-white/5 relative z-10 overflow-x-hidden">
+        <footer className="neo-footer py-10 relative z-10 overflow-x-clip">
           <div className="container mx-auto px-6 md:px-12 max-w-[1300px] flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="font-display text-xl tracking-wide">
               {APP_CONFIG.name.toUpperCase()}::
@@ -378,73 +345,51 @@ function HeroVisual() {
       if (!card1Ref.current || !card2Ref.current) return;
       const x = (e.clientX / window.innerWidth - 0.5) * 14;
       const y = (e.clientY / window.innerHeight - 0.5) * 14;
-      card1Ref.current.style.transform = `translate(${x}px, ${y}px)`;
-      card2Ref.current.style.transform = `translate(${x * 0.7}px, ${y * 0.7}px)`;
+      card1Ref.current.style.transform = `translate(${x}px, ${y}px) rotate(4deg)`;
+      card2Ref.current.style.transform = `translate(${x * 0.7}px, ${y * 0.7}px) rotate(-6deg)`;
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
-    <div className="relative h-[380px] md:h-[540px] hidden lg:block">
+    <div className="hero-art relative h-[380px] md:h-[540px] hidden lg:block">
       <div
         ref={card1Ref}
-        className="absolute top-0 right-0 w-[260px] h-[340px] animate-float"
+        className="hero-art-card hero-art-card--front absolute top-0 right-0 w-[260px] h-[340px]"
         style={{ transform: 'rotate(4deg)', transition: 'transform 0.1s ease-out' }}
       >
-        <div className="w-full h-full border border-white/8 rounded-xl p-4 overflow-hidden backdrop-blur-md"
-          style={{
-            background: 'linear-gradient(135deg, rgba(255,45,120,0.08), rgba(0,245,255,0.05))',
-            boxShadow: '0 30px 80px rgba(255,45,120,0.15)',
-          }}
-        >
-          <div className="w-full h-[75%] rounded-lg relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255,45,120,0.5), rgba(155,48,255,0.3) 40%, rgba(0,245,255,0.4)), repeating-linear-gradient(45deg, rgba(0,0,0,0.2) 0 2px, transparent 2px 6px)',
-            }}
-          >
-            <div className="absolute inset-0" style={{
-              background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0 1px, transparent 1px 3px)',
-              mixBlendMode: 'multiply',
-            }} />
+        <div className="hero-art-frame">
+          <div className="hero-art-image">
+            <span>&lt;/&gt;</span>
+            <small>WEB / APP / API</small>
           </div>
-          <div className="flex justify-between font-mono text-[0.7rem] text-cyan-neon mt-3 tracking-[0.1em]">
-            <span>DEV_01</span>
-            <span>S+</span>
+          <div className="hero-art-meta flex justify-between font-mono text-[0.7rem] mt-3 tracking-[0.1em]">
+            <span>INDEPENDENT DEVELOPER</span>
+            <span>01</span>
           </div>
-          <div className="font-display text-base text-white tracking-wide mt-1">
-            {APP_CONFIG.name.toUpperCase()}
+          <div className="hero-art-name font-display text-base tracking-wide mt-1">
+            {APP_CONFIG.name.toUpperCase()}<span>®</span>
           </div>
         </div>
       </div>
 
       <div
         ref={card2Ref}
-        className="absolute bottom-5 left-0 w-[200px] h-[260px] animate-float-delayed"
+        className="hero-art-card hero-art-card--back absolute bottom-5 left-0 w-[200px] h-[260px]"
         style={{ transform: 'rotate(-6deg)', transition: 'transform 0.1s ease-out' }}
       >
-        <div className="w-full h-full border border-cyan-neon/30 rounded-xl p-4 overflow-hidden backdrop-blur-md"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0,245,255,0.08), rgba(155,48,255,0.05))',
-            boxShadow: '0 30px 80px rgba(0,245,255,0.15)',
-          }}
-        >
-          <div className="w-full h-[75%] rounded-lg relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, rgba(0,245,255,0.5), rgba(155,48,255,0.4), rgba(255,45,120,0.3))',
-            }}
-          >
-            <div className="absolute inset-0" style={{
-              background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.4) 0 1px, transparent 1px 3px)',
-              mixBlendMode: 'multiply',
-            }} />
+        <div className="hero-art-frame">
+          <div className="hero-art-image hero-art-image--alt">
+            <span>BUILD<br />BETTER.</span>
+            <small>EST. 2018</small>
           </div>
-          <div className="flex justify-between font-mono text-[0.7rem] text-cyan-neon mt-3 tracking-[0.1em]">
-            <span>STACK_02</span>
-            <span>A</span>
+          <div className="hero-art-meta flex justify-between font-mono text-[0.7rem] mt-3 tracking-[0.1em]">
+            <span>SELECTED WORK</span>
+            <span>02</span>
           </div>
-          <div className="font-display text-base text-cyan-neon tracking-wide mt-1">
-            FULLSTACK
+          <div className="hero-art-name font-display text-base tracking-wide mt-1">
+            FULL STACK
           </div>
         </div>
       </div>
@@ -465,76 +410,29 @@ function FeatureCard({
   items: string[];
   icon: React.ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 20 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const cx = (e.clientX - rect.left) / rect.width - 0.5;
-    const cy = (e.clientY - rect.top) / rect.height - 0.5;
-    x.set(cx);
-    y.set(cy);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  const accentColors = [
-    { border: 'border-magenta', bg: 'from-magenta/15', text: 'text-magenta', shadow: 'hover:shadow-[0_20px_60px_rgba(255,45,120,0.2),0_0_40px_rgba(0,245,255,0.1)]' },
-    { border: 'border-cyan-neon', bg: 'from-cyan-neon/15', text: 'text-cyan-neon', shadow: 'hover:shadow-[0_20px_60px_rgba(0,245,255,0.2),0_0_40px_rgba(155,48,255,0.15)]' },
-    { border: 'border-purple-neon', bg: 'from-purple-neon/15', text: 'text-purple-neon', shadow: 'hover:shadow-[0_20px_60px_rgba(155,48,255,0.2),0_0_40px_rgba(255,45,120,0.15)]' },
-    { border: 'border-magenta', bg: 'from-magenta/15', text: 'text-magenta', shadow: 'hover:shadow-[0_20px_60px_rgba(255,45,120,0.2),0_0_40px_rgba(0,245,255,0.1)]' },
-  ];
-  const ac = accentColors[index % 4];
+  const accent = ['coral', 'lime', 'violet', 'coral'][index % 4];
 
   return (
     <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 900 }}
-      className={`relative p-5 sm:p-8 overflow-hidden group min-h-[260px] sm:min-h-[300px] border border-white/6 transition-all duration-400 ${ac.shadow}`}
-      whileHover={{ scale: 1.02 }}
+      className="neo-card feature-card relative p-5 sm:p-8 overflow-hidden group min-h-[260px] sm:min-h-[300px]"
+      whileHover={{ y: -4 }}
     >
-      {/* Gradient border on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-        style={{
-          padding: '1px',
-          background: `linear-gradient(135deg, var(--magenta), transparent 40%, var(--cyan))`,
-          WebkitMask: 'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude',
-        }}
-      />
-
-      <div className="corner absolute top-3 right-3 sm:top-4 sm:right-4 font-mono text-[0.6rem] sm:text-[0.65rem] text-white/20 tracking-[0.2em]">
+      <div className="corner absolute top-3 right-3 sm:top-4 sm:right-4 font-mono text-[0.6rem] sm:text-[0.65rem] tracking-[0.2em]">
         {corner}
       </div>
 
-      <div className="font-mono text-[0.7rem] sm:text-[0.78rem] text-[var(--text-muted)] tracking-[0.2em] mb-4 sm:mb-6">
+      <div className="feature-card-index font-mono text-[0.7rem] sm:text-[0.78rem] tracking-[0.2em] mb-4 sm:mb-6">
         // FEATURE.0{index + 1}
       </div>
 
-      <div
-        className={`w-12 h-12 sm:w-16 sm:h-16 mb-4 sm:mb-6 flex items-center justify-center border ${ac.border} bg-gradient-to-br ${ac.bg} to-transparent ${ac.text} relative shrink-0`}
-      >
-        {icon}
-      </div>
+      <div className={`feature-icon feature-icon--${accent} w-12 h-12 sm:w-16 sm:h-16 mb-4 sm:mb-6 flex items-center justify-center shrink-0`}>{icon}</div>
 
-      <h3 className="font-heading text-xl sm:text-2xl tracking-wide mb-2 sm:mb-3 text-white break-words">{title}</h3>
+      <h3 className="font-heading text-xl sm:text-2xl tracking-wide mb-2 sm:mb-3 break-words">{title}</h3>
 
-      <ul className="space-y-1 text-[var(--text-muted)] text-xs sm:text-sm font-light">
+      <ul className="feature-skill-list space-y-1 text-[var(--text-muted)] text-xs sm:text-sm">
         {items.map((item) => (
           <li key={item} className="flex items-center gap-2 break-words">
-            <span className={`w-1 h-1 rounded-full shrink-0 ${ac.text === 'text-magenta' ? 'bg-magenta' : ac.text === 'text-cyan-neon' ? 'bg-cyan-neon' : 'bg-purple-neon'}`} />
+            <span className={`feature-dot feature-dot--${accent} w-2 h-2 shrink-0`} />
             <span className="break-words">{item}</span>
           </li>
         ))}
@@ -556,34 +454,14 @@ function ContactBox({
   accent: 'magenta' | 'cyan' | 'purple';
   external?: boolean;
 }) {
-  const borderColors = {
-    magenta: 'border-magenta/30 hover:border-magenta/60 hover:shadow-[0_0_30px_rgba(255,45,120,0.2)]',
-    cyan: 'border-cyan-neon/30 hover:border-cyan-neon/60 hover:shadow-[0_0_30px_rgba(0,245,255,0.2)]',
-    purple: 'border-purple-neon/30 hover:border-purple-neon/60 hover:shadow-[0_0_30px_rgba(155,48,255,0.2)]',
-  };
-
-  const numColors = {
-    magenta: 'from-white to-magenta',
-    cyan: 'from-white to-cyan-neon',
-    purple: 'from-white to-purple-neon',
-  };
-
   return (
     <a
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
-      className={`text-center p-4 sm:p-5 border ${borderColors[accent]} bg-[var(--bg-dark)]/60 backdrop-blur-sm relative group transition-all duration-300 min-w-0`}
+      className={`neo-card contact-box contact-box--${accent} text-center p-4 sm:p-5 relative group min-w-0`}
     >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background: `linear-gradient(90deg, transparent, ${accent === 'magenta' ? '#FF2D78' : accent === 'cyan' ? '#00F5FF' : '#9B30FF'}, transparent)`,
-        }}
-      />
-      <div
-        className={`font-display text-xl sm:text-2xl leading-none mb-1.5 sm:mb-2 bg-gradient-to-b ${numColors[accent]} bg-clip-text text-transparent break-words`}
-      >
+      <div className="contact-label font-display text-xl sm:text-2xl leading-none mb-1.5 sm:mb-2 break-words">
         {label}
       </div>
       <div className="font-mono text-[0.6rem] sm:text-[0.65rem] text-[var(--text-muted)] uppercase tracking-[0.15em] sm:tracking-[0.2em] break-all">

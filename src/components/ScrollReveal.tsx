@@ -39,8 +39,9 @@ export default function ScrollReveal({
   const variants = directionVariants[direction];
 
   return (
-    <div ref={ref} style={{ position: 'relative', width }} className={className}>
+    <div ref={ref} style={{ position: 'relative', width, minWidth: 0, height: '100%' }} className={className}>
       <motion.div
+        style={{ height: '100%' }}
         variants={variants}
         initial="hidden"
         animate={mainControls}
