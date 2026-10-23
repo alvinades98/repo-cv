@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 type Theme = 'light' | 'dark' | 'system';
 type ResolvedTheme = 'light' | 'dark';
@@ -70,8 +71,20 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     }, [theme, mounted]);
 
     const setTheme = (newTheme: Theme) => {
-        setThemeState(newTheme);
         localStorage.setItem('theme', newTheme);
+        const apply = () => {
+            // Class is set here (not only in the effect) so the view-transition snapshot sees the new theme
+            const root = document.documentElement;
+            root.classList.remove('light', 'dark');
+            root.classList.add(newTheme === 'system' ? getSystemTheme() : newTheme);
+            flushSync(() => setThemeState(newTheme));
+        };
+        if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            apply();
+            return;
+        }
+        // New theme wipes across the page — see ::view-transition in globals.css
+        document.startViewTransition(apply);
     };
 
     return (

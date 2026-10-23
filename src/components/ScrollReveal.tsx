@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, useInView, useAnimation } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 
 interface ScrollRevealProps {
@@ -8,51 +7,44 @@ interface ScrollRevealProps {
   width?: 'fit-content' | '100%';
   className?: string;
   delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
+  /** rise: text fades up. land: inner cards are set down onto the page (see MOTION in globals.css). */
+  variant?: 'rise' | 'land';
 }
-
-const directionVariants = {
-  up: { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } },
-  down: { hidden: { opacity: 0, y: -40 }, visible: { opacity: 1, y: 0 } },
-  left: { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0 } },
-  none: { hidden: { opacity: 0 }, visible: { opacity: 1 } },
-};
 
 export default function ScrollReveal({
   children,
   width = '100%',
   className = '',
-  delay = 0.15,
-  direction = 'up',
+  delay = 0,
+  variant = 'rise',
 }: ScrollRevealProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const mainControls = useAnimation();
+  const ref = useRef<HTMLDivElement>(null);
 
+  // Only content below the fold is hidden, and only once JS runs — SSR/no-JS render it plainly.
+  // data-reveal is set on the DOM directly so reveals never re-render React.
   useEffect(() => {
-    if (isInView) {
-      mainControls.start('visible');
-    }
-  }, [isInView, mainControls]);
-
-  const variants = directionVariants[direction];
+    const el = ref.current;
+    if (!el || el.getBoundingClientRect().top < window.innerHeight * 0.88) return;
+    el.dataset.reveal = 'pending';
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        el.dataset.reveal = 'in';
+        io.disconnect();
+      },
+      { rootMargin: '0px 0px -12% 0px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <div ref={ref} style={{ position: 'relative', width, minWidth: 0, height: '100%' }} className={className}>
-      <motion.div
-        style={{ height: '100%' }}
-        variants={variants}
-        initial="hidden"
-        animate={mainControls}
-        transition={{
-          duration: 0.9,
-          delay,
-          ease: [0.2, 0.8, 0.2, 1],
-        }}
-      >
-        {children}
-      </motion.div>
+    <div
+      ref={ref}
+      className={`reveal reveal--${variant} ${className}`}
+      style={{ position: 'relative', width, minWidth: 0, height: '100%', '--reveal-delay': `${delay}s` } as React.CSSProperties}
+    >
+      {children}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import ScrollReveal from './ScrollReveal';
 import { useLanguage } from './LanguageProvider';
 
@@ -49,11 +48,11 @@ export default function CareerTimeline() {
         const isEducation = item.type === 'education';
 
         return (
-          <ScrollReveal key={index} delay={index * 0.1} direction={isLeft ? 'left' : 'right'}>
+          <ScrollReveal key={index} variant="land">
             <div className={`relative flex items-start mb-10 md:mb-16 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} flex-row`}>
               {/* Dot */}
               <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10">
-                <motion.div
+                <div
                   className={`timeline-dot ${isEducation ? 'timeline-dot--education' : 'timeline-dot--work'}`}
                 />
               </div>

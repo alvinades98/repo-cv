@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T06:48:32.204964+00:00",
+  "title": "Design System: Alvin Ade Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "coral": {
+        "role": "primary",
+        "displayName": "Stamp Coral",
+        "canonical": "#f1664f",
+        "tonalRamp": [
+          "#2d0000",
+          "#510000",
+          "#880000",
+          "#af2611",
+          "#d74e39",
+          "#ff735c",
+          "#ff997f",
+          "#ffd0bd"
+        ]
+      },
+      "lime": {
+        "role": "secondary",
+        "displayName": "Riso Lime",
+        "canonical": "#b7e779",
+        "tonalRamp": [
+          "#001100",
+          "#122e00",
+          "#294e00",
+          "#477000",
+          "#67921d",
+          "#89b648",
+          "#acdb6e",
+          "#d6ffa7"
+        ]
+      },
+      "violet": {
+        "role": "tertiary",
+        "displayName": "Press Violet",
+        "canonical": "#7062df",
+        "tonalRamp": [
+          "#0e003a",
+          "#22135b",
+          "#3e229d",
+          "#5a48c3",
+          "#796cea",
+          "#9a90ff",
+          "#bdb5ff",
+          "#e4e4ff"
+        ]
+      },
+      "coral-text": {
+        "role": "primary",
+        "displayName": "Readable Coral",
+        "canonical": "#aa3525",
+        "tonalRamp": [
+          "#2d0000",
+          "#510000",
+          "#810100",
+          "#a73323",
+          "#cf5745",
+          "#f77b67",
+          "#ffa08a",
+          "#ffd0bd"
+        ]
+      },
+      "lime-text": {
+        "role": "secondary",
+        "displayName": "Readable Lime",
+        "canonical": "#426622",
+        "tonalRamp": [
+          "#001200",
+          "#0d2e00",
+          "#2a4d02",
+          "#496d2a",
+          "#69904c",
+          "#8bb36e",
+          "#afd891",
+          "#d3feb5"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cream Paper",
+        "canonical": "#f7f1e6",
+        "tonalRamp": [
+          "#0e0b05",
+          "#29241c",
+          "#464139",
+          "#666157",
+          "#878278",
+          "#aaa49a",
+          "#cec8be",
+          "#f4eee3"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Card Stock",
+        "canonical": "#fffdf8",
+        "tonalRamp": [
+          "#0c0b08",
+          "#262521",
+          "#43423e",
+          "#63615d",
+          "#84827e",
+          "#a7a5a0",
+          "#cbc9c4",
+          "#f0eee9"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Press Ink",
+        "canonical": "#211f1c",
+        "tonalRamp": [
+          "#0d0b08",
+          "#272522",
+          "#44423e",
+          "#63615d",
+          "#84827e",
+          "#a7a5a1",
+          "#cbc9c5",
+          "#f1eeea"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "#5b5750",
+        "tonalRamp": [
+          "#0e0b06",
+          "#28251e",
+          "#45413b",
+          "#65615a",
+          "#86827a",
+          "#a9a49d",
+          "#cdc8c0",
+          "#f3eee5"
+        ]
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "Night Paper",
+        "canonical": "#201e22",
+        "tonalRamp": [
+          "#0c0a0e",
+          "#262428",
+          "#434145",
+          "#626065",
+          "#848186",
+          "#a6a4a9",
+          "#cac8cd",
+          "#f0edf3"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Night Card Stock",
+        "canonical": "#302d32",
+        "tonalRamp": [
+          "#0d0a0e",
+          "#272429",
+          "#444146",
+          "#636065",
+          "#848187",
+          "#a7a3aa",
+          "#cbc7ce",
+          "#f1edf3"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "#fff7ec",
+        "tonalRamp": [
+          "#0f0a04",
+          "#2a241c",
+          "#474138",
+          "#676057",
+          "#888177",
+          "#aba49a",
+          "#d0c8bd",
+          "#f5ede2"
+        ]
+      },
+      "dark-ink-muted": {
+        "role": "neutral",
+        "displayName": "Night Faded Ink",
+        "canonical": "#c4bcb0",
+        "tonalRamp": [
+          "#100a04",
+          "#2a241b",
+          "#484137",
+          "#676055",
+          "#898176",
+          "#aca498",
+          "#d0c8bc",
+          "#f6ede1"
+        ]
+      },
+      "dark-coral": {
+        "role": "primary",
+        "displayName": "Night Coral",
+        "canonical": "#ff806a",
+        "tonalRamp": [
+          "#2d0000",
+          "#510000",
+          "#820000",
+          "#a9311f",
+          "#d05642",
+          "#f87a64",
+          "#ff9f87",
+          "#ffd0bd"
+        ]
+      },
+      "dark-lime": {
+        "role": "secondary",
+        "displayName": "Night Lime",
+        "canonical": "#c5f28a",
+        "tonalRamp": [
+          "#001100",
+          "#132e00",
+          "#2b4e00",
+          "#496f00",
+          "#699127",
+          "#8bb54e",
+          "#aeda73",
+          "#d7fea6"
+        ]
+      },
+      "dark-violet": {
+        "role": "tertiary",
+        "displayName": "Night Violet",
+        "canonical": "#9a8dff",
+        "tonalRamp": [
+          "#0f0039",
+          "#25125b",
+          "#412892",
+          "#5e4cb7",
+          "#7e6fde",
+          "#9f92ff",
+          "#c2b7ff",
+          "#e8e3ff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero title only, uppercase."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Two-line section headings; second line is a coral accent word."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles and timeline roles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions, max ~580px wide."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "All metadata: tags, indices, years, nav. Uppercase mono."
+      }
+    },
+    "shadows": [
+      {
+        "name": "pin",
+        "value": "3px 3px 0 #211f1c",
+        "purpose": "Tags, logo, controls, icon tiles."
+      },
+      {
+        "name": "button",
+        "value": "5px 5px 0 #211f1c",
+        "purpose": "Buttons at rest."
+      },
+      {
+        "name": "card",
+        "value": "6px 6px 0 #211f1c",
+        "purpose": "Cards at rest; 9px on hover."
+      },
+      {
+        "name": "slab",
+        "value": "10px 10px 0 #211f1c",
+        "purpose": "Hero art and contact panel."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-land",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Objects set down onto the paper; reveals and state changes."
+      },
+      {
+        "name": "ease-wipe",
+        "value": "cubic-bezier(0.76, 0, 0.24, 1)",
+        "purpose": "Block wipes over words and the theme-switch wipe."
+      },
+      {
+        "name": "press",
+        "value": "60ms",
+        "purpose": "Active press into the shadow."
+      },
+      {
+        "name": "hover",
+        "value": "150ms",
+        "purpose": "Hover lift / press-toward-shadow."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action; presses into its shadow.",
+      "html": "<button class=\"ds-btn-primary\">Contact Me →</button>",
+      "css": ".ds-btn-primary{font-family: var(--font-grotesk, 'Space Grotesk'), sans-serif;display:inline-flex;align-items:center;min-height:48px;padding:.8rem 1.2rem;border:2px solid #211f1c;border-radius:4px;background:#f1664f;color:#211f1c;box-shadow:5px 5px 0 #211f1c;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform 150ms ease,box-shadow 150ms ease,background-color 150ms ease}.ds-btn-primary:hover{background:#b7e779;box-shadow:2px 2px 0 #211f1c;transform:translate(3px,3px)}.ds-btn-primary:active{box-shadow:0 0 0 #211f1c;transform:translate(5px,5px);transition-duration:60ms}.ds-btn-primary:focus-visible{outline:3px solid #7062df;outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary action on card stock.",
+      "html": "<button class=\"ds-btn-secondary\">View Work</button>",
+      "css": ".ds-btn-secondary{font-family: var(--font-grotesk, 'Space Grotesk'), sans-serif;display:inline-flex;align-items:center;min-height:48px;padding:.8rem 1.2rem;border:2px solid #211f1c;border-radius:4px;background:#fffdf8;color:#211f1c;box-shadow:5px 5px 0 #211f1c;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:transform 150ms ease,box-shadow 150ms ease,background-color 150ms ease}.ds-btn-secondary:hover{background:#b7e779;box-shadow:2px 2px 0 #211f1c;transform:translate(3px,3px)}.ds-btn-secondary:active{box-shadow:0 0 0 #211f1c;transform:translate(5px,5px)}.ds-btn-secondary:focus-visible{outline:3px solid #7062df;outline-offset:3px}"
+    },
+    {
+      "name": "Section Tag",
+      "kind": "chip",
+      "refersTo": "section-tag",
+      "description": "Lime caption above every section heading.",
+      "html": "<span class=\"ds-tag\">CORE SYSTEMS</span>",
+      "css": ".ds-tag{font-family: var(--font-space-mono, 'Space Mono'), monospace;display:inline-flex;padding:.35rem .65rem;border:2px solid #211f1c;border-radius:3px;background:#b7e779;color:#211f1c;box-shadow:3px 3px 0 #211f1c;font-size:.68rem;font-weight:700;letter-spacing:.12em}"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "tech-chip",
+      "description": "Stack labels on projects and timeline.",
+      "html": "<span class=\"ds-chip\">Laravel</span>",
+      "css": ".ds-chip{font-family: var(--font-space-mono, 'Space Mono'), monospace;display:inline-block;padding:.25rem .6rem;border:1.5px solid #211f1c;border-radius:3px;background:#b7e779;color:#211f1c;font-size:11px;font-weight:700}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Card stock pasted onto paper; lifts on hover.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-index\">// FEATURE.01</div><h3 class=\"ds-card-title\">Frontend</h3><p class=\"ds-card-body\">React, Next.js, React Native</p></div>",
+      "css": ".ds-card{font-family: var(--font-grotesk, 'Space Grotesk'), sans-serif;padding:32px;border:2px solid #211f1c;border-radius:4px;background:#fffdf8;color:#211f1c;box-shadow:6px 6px 0 #211f1c;transition:transform 180ms ease,box-shadow 180ms ease}.ds-card:hover{transform:translateY(-4px);box-shadow:9px 9px 0 #211f1c}.ds-card-index{font-family: var(--font-space-mono, 'Space Mono'), monospace;font-size:.75rem;font-weight:700;letter-spacing:.2em;color:#5b5750;margin-bottom:1rem}.ds-card-title{font-size:1.5rem;font-weight:700;letter-spacing:-.045em;margin:0 0 .5rem}.ds-card-body{margin:0;color:#5b5750;line-height:1.7}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "description": "Mono nav link; coral underline draws in when active.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link is-active\" href=\"#\">About</a><a class=\"ds-nav-link\" href=\"#\">Career</a><a class=\"ds-nav-link\" href=\"#\">Portfolio</a></nav>",
+      "css": ".ds-nav{display:flex;gap:1rem;padding:1rem;background:#f7f1e6;border-bottom:2px solid #211f1c}.ds-nav-link{font-family: var(--font-space-mono, 'Space Mono'), monospace;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:#5b5750;background:linear-gradient(#f1664f,#f1664f) no-repeat 0 100%/0% 3px;transition:background-size 280ms cubic-bezier(.16,1,.3,1),color 150ms ease}.ds-nav-link:hover,.ds-nav-link.is-active{color:#211f1c;background-size:100% 3px}.ds-nav-link:focus-visible{outline:3px solid #7062df;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Print Shop",
+    "overview": "The page is a sheet of cream paper with everything stamped or pasted onto it. Every object has a thick ink border and a hard offset shadow with no blur, so its depth reads like a cut-out raised off the paper. Colour is used as flat blocks (coral, lime, violet), like risograph ink, never gradients. Type is a grotesk set tight and heavy, paired with monospace labels that read like printed captions.\n\nInteractions should feel physical and solid. Hovering lifts an object, so its shadow grows. Pressing pushes it into its shadow until the shadow is gone. Motion follows the same physics: objects are set down onto the paper, and solid blocks sweep across words before the words appear.",
+    "keyCharacteristics": [
+      "Paper background with a 22px dot grid.",
+      "2–3px ink borders, 3–4px corners, offset shadows with zero blur.",
+      "Three flat accents (coral, lime, violet), always with dark ink text, never white.",
+      "Space Grotesk 700 with tight tracking for headings; Space Mono for labels.",
+      "Light and dark themes with the same structure. Only the paper, ink and accent brightness change."
+    ],
+    "rules": [
+      {
+        "name": "The Dark Ink Rule",
+        "body": "Text on an accent surface (coral, lime, violet) is always Press Ink (#211f1c), including in dark mode. Never put white text on an accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Ink Rule",
+        "body": "Colour is applied as solid blocks. No gradients, glows or transparency on accents.",
+        "section": "colors"
+      },
+      {
+        "name": "The Caption Rule",
+        "body": "Every piece of metadata (indices, years, tags, statuses) is set in uppercase Space Mono. Space Grotesk is reserved for content.",
+        "section": "typography"
+      },
+      {
+        "name": "The Shadow Physics Rule",
+        "body": "A lift makes the shadow larger. A press moves the object toward its shadow until the shadow reaches 0. Never use a blurred shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do give every raised object a 2px ink border and an offset shadow with no blur.",
+      "Do keep text on accent surfaces in Press Ink (#211f1c).",
+      "Do set metadata in uppercase Space Mono with wide tracking.",
+      "Do animate with the shadow physics: set objects down onto the paper, press them into their shadow."
+    ],
+    "donts": [
+      "Don't use blurred shadows, glows, gradients or glassmorphism.",
+      "Don't use large corner radii (more than 4px) or pill shapes.",
+      "Don't add a fourth accent colour beyond coral, lime and violet.",
+      "Don't put white text on an accent."
+    ]
+  }
+}

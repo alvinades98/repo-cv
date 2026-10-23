@@ -5,9 +5,9 @@
   --color-magenta: var(--accent-coral-text);
   --color-cyan-neon: var(--accent-green-text);
   --color-purple-neon: var(--purple);
-  --font-mono: 'Space Mono', monospace;
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+  --font-display: var(--font-grotesk), sans-serif;
+  --font-heading: var(--font-grotesk), sans-serif;
 }
 
 html {
@@ -85,7 +85,7 @@ body.neo-ui {
   background-color: var(--neo-paper);
   background-image: radial-gradient(var(--neo-dot) 1px, transparent 1px);
   background-size: 22px 22px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-grotesk), sans-serif;
 }
 
 body.neo-ui::before {
@@ -122,7 +122,7 @@ body.neo-ui main section[id] {
 
 body.neo-ui .font-display,
 body.neo-ui .font-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-grotesk), sans-serif;
   font-weight: 700;
 }
 
@@ -150,8 +150,7 @@ body.neo-ui .neo-card {
 }
 
 body.neo-ui a.neo-card:hover,
-body.neo-ui .project-card:hover,
-body.neo-ui .feature-card:hover {
+body.neo-ui .project-card:hover {
   border-color: var(--neo-ink);
   box-shadow: 9px 9px 0 var(--neo-shadow);
 
@@ -169,7 +168,7 @@ body.neo-ui .neo-button {
   color: var(--neo-ink);
   background: var(--magenta);
   box-shadow: 5px 5px 0 var(--neo-shadow);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-grotesk), sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -198,7 +197,7 @@ body.neo-ui .section-tag {
   color: var(--neo-ink);
   background: var(--cyan);
   box-shadow: 3px 3px 0 var(--neo-shadow);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-space-mono), monospace;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -297,7 +296,7 @@ body.neo-ui .neo-logo {
 
 body.neo-ui .neo-nav-link {
   color: var(--text-muted);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-space-mono), monospace;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -384,7 +383,7 @@ body.neo-ui .hero-terminal {
   color: var(--neo-ink);
   background: var(--cyan);
   box-shadow: 4px 4px 0 var(--neo-shadow);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-space-mono), monospace;
 }
 
 body.neo-ui .hero-description {
@@ -438,7 +437,7 @@ body.neo-ui .hero-art-image > small {
   padding: 0.2rem 0.35rem;
   border: 1px solid var(--neo-ink);
   background: var(--neo-surface);
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-space-mono), monospace;
   font-size: 0.58rem;
   font-weight: 700;
 }
@@ -471,43 +470,110 @@ body.neo-ui .hero-art-name span {
   vertical-align: top;
 }
 
-body.neo-ui .feature-card {
-  box-shadow: 6px 6px 0 var(--neo-shadow);
-}
-
-body.neo-ui .feature-card-index,
 body.neo-ui .corner {
   color: var(--text-muted);
   font-weight: 700;
 }
 
-body.neo-ui .feature-icon {
-  border: 2px solid var(--neo-ink);
-  color: var(--neo-ink);
-  box-shadow: 3px 3px 0 var(--neo-shadow);
+/* Core Systems: one printed spec sheet instead of four loose cards.
+   The 2px grid gap shows the ink background through, so column rules follow any column count. */
+body.neo-ui .systems-sheet {
+  gap: 2px;
+  overflow: hidden;
+  border: 3px solid var(--neo-ink);
+  border-radius: 4px;
+  background: var(--neo-ink);
+  box-shadow: 10px 10px 0 var(--neo-shadow);
 }
 
-body.neo-ui .feature-icon--coral,
-body.neo-ui .feature-dot--coral {
-  background: var(--magenta);
+body.neo-ui .systems-col {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  background: var(--neo-surface);
 }
 
-body.neo-ui .feature-icon--lime,
-body.neo-ui .feature-dot--lime {
-  background: var(--cyan);
+body.neo-ui .systems-band {
+  display: grid;
+  grid-template-areas: "num icon" "num code";
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 0.5rem 1rem;
+  padding: 1.25rem 1.25rem 1rem 1.5rem;
+  border-bottom: 2px solid var(--neo-ink);
+  color: #211f1c;
+}
+body.neo-ui .systems-band--coral { background: var(--magenta); }
+body.neo-ui .systems-band--lime { background: var(--cyan); }
+body.neo-ui .systems-band--violet { background: var(--purple); }
+
+body.neo-ui .systems-num {
+  grid-area: num;
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: clamp(4rem, 7vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
 }
 
-body.neo-ui .feature-icon--violet,
-body.neo-ui .feature-dot--violet {
-  background: var(--purple);
+body.neo-ui .systems-icon {
+  grid-area: icon;
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  border: 2px solid #211f1c;
+  border-radius: 3px;
+  background: #fffdf8;
+  box-shadow: 3px 3px 0 #211f1c;
 }
 
-body.neo-ui .feature-dot {
-  border: 1px solid var(--neo-ink);
+body.neo-ui .systems-code {
+  grid-area: code;
+  justify-self: end;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
 }
 
-body.neo-ui .feature-skill-list {
-  font-weight: 500;
+body.neo-ui .systems-body {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+body.neo-ui .systems-title {
+  margin-bottom: 1rem;
+  font-family: var(--font-grotesk), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+body.neo-ui .systems-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+body.neo-ui .systems-skills li {
+  padding: 0.25rem 0.55rem;
+  border: 1.5px solid var(--neo-ink);
+  border-radius: 3px;
+  background: var(--neo-paper);
+  color: var(--text-main);
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  body.neo-ui .systems-sheet { box-shadow: 6px 6px 0 var(--neo-shadow); }
+  body.neo-ui .systems-band { padding-inline: 1.25rem 1rem; }
+  body.neo-ui .systems-body { padding: 1.25rem; }
 }
 
 body.neo-ui .journey-card {
@@ -656,9 +722,22 @@ body.neo-ui .neo-game-card {
   box-shadow: 4px 4px 0 var(--neo-shadow);
 }
 
-body.neo-ui .neo-game-card:hover {
+/* `translate`, not `transform`: `scale` carries the match pulse */
+body.neo-ui .neo-game-card {
+  perspective: 600px;
+  transition: translate 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+body.neo-ui .neo-game-card:hover:not(:disabled) {
   background: var(--magenta);
   box-shadow: 2px 2px 0 var(--neo-shadow);
+  translate: 2px 2px;
+}
+
+body.neo-ui .neo-game-card:active:not(:disabled) {
+  box-shadow: 0 0 0 var(--neo-shadow);
+  translate: 4px 4px;
+  transition-duration: 60ms;
 }
 
 body.neo-ui .neo-game-card.is-revealed,
@@ -730,7 +809,7 @@ body.neo-ui .neo-loading-caption {
 
 /* Colored surfaces always use dark ink, including in dark mode. */
 body.neo-ui :is(.neo-button:not(.neo-button--secondary), .section-tag,
-.neo-logo, .hero-terminal, .feature-icon, .project-tech, .timeline-tech,
+.neo-logo, .hero-terminal, .project-tech, .timeline-tech,
 .timeline-badge, .contact-panel, .contact-heading-accent, .neo-game-card,
 .game-win, .hero-art-image) {
   color: #211f1c;
@@ -773,4 +852,165 @@ body.neo-ui .contact-box > div:last-child { text-transform: none; letter-spacing
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+}
+
+/* ================== MOTION ================== */
+/* Press: controls sink into their own shadow — the system's offset shadow is the depth axis. */
+body.neo-ui .neo-control {
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+body.neo-ui .neo-button:active {
+  box-shadow: 0 0 0 var(--neo-shadow);
+  transform: translate(5px, 5px);
+  transition-duration: 60ms;
+}
+body.neo-ui .neo-control:active {
+  box-shadow: 0 0 0 var(--neo-shadow);
+  transform: translate(3px, 3px);
+  transition-duration: 60ms;
+}
+body.neo-ui a.neo-card:hover { transform: translate(-3px, -3px); }
+body.neo-ui .project-card:hover { transform: translateY(-4px); }
+
+/* Memory game: faces flip in on remount, a matched pair pulses once, the win card rises. */
+@keyframes neo-flip-in {
+  from { opacity: 0; transform: rotateY(90deg); }
+}
+@keyframes neo-match {
+  50% { scale: 1.08; }
+}
+body.neo-ui .neo-game-face { animation: neo-flip-in 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+body.neo-ui .neo-game-card.is-matched { animation: neo-match 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+body.neo-ui .game-win { animation: neo-land 450ms cubic-bezier(0.16, 1, 0.3, 1); }
+body.neo-ui .neo-mobile-menu { animation: neo-rise 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+body.neo-ui a.neo-card:active {
+  box-shadow: 0 0 0 var(--neo-shadow);
+  transform: translate(6px, 6px);
+  transition-duration: 60ms;
+}
+
+/* Nav: the active marker draws in from the left instead of blinking on. */
+body.neo-ui .neo-nav-link {
+  background: linear-gradient(var(--magenta), var(--magenta)) no-repeat 0 100% / 0% 3px;
+  transition: background-size 280ms cubic-bezier(0.16, 1, 0.3, 1), color 150ms ease;
+}
+body.neo-ui .neo-nav-link:hover,
+body.neo-ui .neo-nav-link.is-active {
+  text-decoration: none;
+  background-size: 100% 3px;
+}
+
+/* Two moves carry the whole page:
+   LAND — a piece is lifted with a long shadow, then set down onto the paper.
+   WIPE — a solid block sweeps over a word and leaves it printed behind.
+   Motion uses the `translate`/`scale` properties, never `transform`, so it composes with
+   the card hover lifts and the hero-art parallax. All CSS — no animation library ships. */
+@keyframes neo-land {
+  from { opacity: 0; translate: -12px -12px; box-shadow: 18px 18px 0 var(--neo-shadow); }
+}
+@keyframes neo-rise {
+  from { opacity: 0; translate: 0 14px; }
+}
+@keyframes neo-pop {
+  from { scale: 0; }
+}
+@keyframes neo-wipe-bar {
+  0% { clip-path: inset(0 100% 0 0); }
+  45%, 55% { clip-path: inset(0); }
+  100% { clip-path: inset(0 0 0 100%); }
+}
+@keyframes neo-wipe-text {
+  from, 50% { visibility: hidden; }
+  to { visibility: visible; }
+}
+@keyframes neo-marker {
+  from { background-size: 0% 100%; }
+}
+
+/* WIPE mechanics: the word hides until the bar covers it; the bar (::after) stays visible. */
+body.neo-ui .stroke-text { display: inline-block; }
+.hero-enter .hero-title > span > *,
+.reveal[data-reveal="in"] .stroke-text {
+  position: relative;
+  animation: neo-wipe-text var(--wipe-dur, 700ms) linear var(--wipe-delay, 0ms) backwards;
+}
+.hero-enter .hero-title > span > *::after,
+.reveal[data-reveal="in"] .stroke-text::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  visibility: visible;
+  pointer-events: none;
+  background: var(--wipe-color, var(--neo-ink));
+  clip-path: inset(0 0 0 100%);
+  animation: neo-wipe-bar var(--wipe-dur, 700ms) cubic-bezier(0.76, 0, 0.24, 1) var(--wipe-delay, 0ms) backwards;
+}
+.reveal[data-reveal="in"] .stroke-text { --wipe-delay: calc(var(--reveal-delay) + 180ms); }
+
+/* HERO — the focal sequence (~1.2s): status, three wiped lines in the palette, then the rest lands. */
+.hero-enter .hero-status { animation: neo-land 500ms cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+.hero-enter .hero-title > span:nth-child(1) > * { --wipe-delay: 80ms; --wipe-color: var(--cyan); }
+.hero-enter .hero-title > span:nth-child(2) > * { --wipe-delay: 190ms; --wipe-color: var(--magenta); }
+.hero-enter .hero-title > span:nth-child(3) > * { --wipe-delay: 300ms; --wipe-color: var(--neo-ink); }
+.hero-enter .hero-terminal { animation: neo-land 500ms cubic-bezier(0.16, 1, 0.3, 1) 620ms backwards; }
+.hero-enter .hero-description { animation: neo-rise 500ms cubic-bezier(0.16, 1, 0.3, 1) 680ms backwards; }
+.hero-enter .hero-actions > * { animation: neo-land 450ms cubic-bezier(0.16, 1, 0.3, 1) 760ms backwards; }
+.hero-enter .hero-actions > :nth-child(2) { animation-delay: 840ms; }
+.hero-enter .hero-art-card--front { animation: neo-land 650ms cubic-bezier(0.16, 1, 0.3, 1) 380ms backwards; }
+.hero-enter .hero-art-card--back { animation: neo-land 650ms cubic-bezier(0.16, 1, 0.3, 1) 520ms backwards; }
+
+/* SCROLL — text rises, cards land. Hidden only while JS holds data-reveal="pending". */
+.reveal[data-reveal="pending"] { opacity: 0; }
+.reveal--rise[data-reveal="in"] {
+  animation: neo-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay) backwards;
+}
+.reveal--land[data-reveal="in"] :is(.neo-card, .contact-panel, .systems-sheet) {
+  animation: neo-land 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay) backwards;
+}
+.reveal--land[data-reveal="in"] .timeline-dot {
+  animation: neo-pop 380ms cubic-bezier(0.16, 1, 0.3, 1) 220ms backwards;
+}
+/* Contact: the panel slams down, its links stamp in after it, the highlight is drawn last. */
+.reveal--land[data-reveal="in"] .contact-box:nth-child(1) { animation-delay: 300ms; }
+.reveal--land[data-reveal="in"] .contact-box:nth-child(2) { animation-delay: 380ms; }
+.reveal--land[data-reveal="in"] .contact-box:nth-child(3) { animation-delay: 460ms; }
+.reveal[data-reveal="in"] .contact-heading-accent {
+  background: linear-gradient(var(--cyan), var(--cyan)) no-repeat 0 0 / 100% 100%;
+  animation: neo-marker 650ms cubic-bezier(0.76, 0, 0.24, 1) 420ms backwards;
+}
+
+/* Timeline spine draws itself as you read down it; the tip stays ~60% down the viewport.
+   Unsupported browsers keep the static line. */
+@keyframes neo-draw {
+  from { scale: 1 0; }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    body.neo-ui .timeline-line {
+      transform-origin: top;
+      animation: neo-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 40vh entry calc(100% + 40vh);
+    }
+  }
+}
+
+/* Theme switch: the new theme wipes across with a hard edge instead of cross-fading. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: neo-theme-wipe 560ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+@keyframes neo-theme-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global rule only shortens durations; delays would still hide content. Reveals become instant. */
+  .hero-enter, .hero-enter *, .hero-enter *::after,
+  .reveal, .reveal *, .reveal *::after { animation: none !important; }
+  body.neo-ui .neo-nav-link { transition: none; }
 }

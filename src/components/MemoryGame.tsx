@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from './LanguageProvider';
 
 const EMOJIS = ['🚀', '⚡', '🎨', '💻', '🎯', '🔥', '🌟', '🎮'];
@@ -167,57 +166,31 @@ export default function MemoryGame() {
       {/* Game grid */}
       <div className="grid grid-cols-4 gap-3">
         {cards.map((card) => (
-          <motion.button
+          <button
             key={card.id}
             onClick={() => handleCardClick(card.id)}
             disabled={card.isMatched}
-            className={`neo-game-card aspect-square rounded-xl text-3xl md:text-4xl font-bold transition-all duration-300 ${
+            className={`neo-game-card aspect-square rounded-xl text-3xl md:text-4xl font-bold ${
               card.isFlipped || card.isMatched ? 'is-revealed' : ''
             } ${card.isMatched ? 'is-matched' : ''}`}
-            whileHover={!card.isFlipped && !card.isMatched ? { scale: 1.05 } : {}}
-            whileTap={!card.isFlipped && !card.isMatched ? { scale: 0.95 } : {}}
-            animate={card.isMatched ? { scale: [1, 1.15, 1], rotate: [0, -3, 3, 0] } : {}}
-            transition={{ duration: 0.3 }}
-            style={{ perspective: '600px' }}
           >
-            <AnimatePresence mode="wait">
-              {card.isFlipped || card.isMatched ? (
-                <motion.span
-                  key="emoji"
-                  initial={{ rotateY: -90, opacity: 0 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={{ rotateY: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  {card.emoji}
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="question"
-                  initial={{ rotateY: 90, opacity: 0 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={{ rotateY: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="block text-lg font-mono"
-                >
-                  ?
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.button>
+            {/* Face swap remounts the span, which replays the CSS flip-in */}
+            {card.isFlipped || card.isMatched ? (
+              <span key="emoji" className="neo-game-face block">
+                {card.emoji}
+              </span>
+            ) : (
+              <span key="question" className="neo-game-face block text-lg font-mono">
+                ?
+              </span>
+            )}
+          </button>
         ))}
       </div>
 
       {/* Win screen */}
-      <AnimatePresence>
-        {gameWon && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="neo-card game-win mt-6 text-center p-6"
-          >
+      {gameWon && (
+          <div className="neo-card game-win mt-6 text-center p-6">
             <div className="text-4xl mb-2">🎉</div>
             <h3 className="text-xl font-bold text-[var(--text-main)] mb-1 font-display tracking-wide">{t.game.youWon}</h3>
             <p className="text-[var(--text-muted)] mb-4 font-light">
@@ -226,9 +199,8 @@ export default function MemoryGame() {
             <button className="neo-button" onClick={resetGame}>
               {t.game.playAgain}
             </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </div>
   );
 }

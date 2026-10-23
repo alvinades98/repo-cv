@@ -1,24 +1,26 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Project } from '@/lib/data';
 import { useLanguage } from './LanguageProvider';
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { t, locale } = useLanguage();
   return (
-    <motion.div
-      className="neo-card project-card group relative overflow-hidden"
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.18 }}
-    >
+    <div className="neo-card project-card group relative overflow-hidden">
       <div>
         {project.imageUrl && (
           <div className="project-card-image w-full h-48 relative overflow-hidden">
             <img
               src={project.imageUrl}
+              // Cards render ≤ ~420px wide; serve 480w to 1x screens instead of always 800w
+              srcSet={`${project.imageUrl.replace('w=800', 'w=480')} 480w, ${project.imageUrl} 800w`}
+              sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+              width={800}
+              height={384}
+              loading="lazy"
+              decoding="async"
               alt={project.title[locale]}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           </div>
         )}
@@ -66,6 +68,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

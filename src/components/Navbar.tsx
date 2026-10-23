@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { APP_CONFIG } from '@/lib/config';
 import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
@@ -14,28 +13,24 @@ const NAV_ITEMS: NavKey[] = ['home', 'about', 'career', 'portfolio', 'contact', 
 export default function Navbar() {
   const { t, locale } = useLanguage();
   const [activeSection, setActiveSection] = useState<NavKey>('home');
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Observer instead of a scroll handler: no layout reads per scroll frame.
+  // A thin band near the top of the viewport decides which section is active.
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      const sections = NAV_ITEMS.map((id) => document.getElementById(id));
-      const scrollPos = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPos) {
-          setActiveSection(NAV_ITEMS[i]);
-          break;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id as NavKey);
         }
-      }
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+      },
+      { rootMargin: '-100px 0px -70% 0px' }
+    );
+    NAV_ITEMS.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) io.observe(section);
+    });
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -47,12 +42,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      className={`neo-navbar fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'is-scrolled' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-    >
+    <nav className="neo-navbar fixed top-0 w-full z-50">
       <div className="neo-nav-inner container mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link
@@ -102,9 +92,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
+        <div
           id="mobile-navigation"
           className="neo-mobile-menu lg:hidden px-6 py-4"
         >
@@ -120,8 +108,8 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-        </motion.div>
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
 }

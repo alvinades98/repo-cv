@@ -3,6 +3,11 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeProvider from "@/components/ThemeProvider";
 import LanguageProvider from "@/components/LanguageProvider";
+import { Space_Grotesk, Space_Mono } from "next/font/google";
+
+// Self-hosted + preloaded by Next; replaces the render-blocking Google Fonts <link>
+const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
+const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-space-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Alvin Ade — Full Stack Developer",
@@ -17,12 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -43,7 +42,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased overflow-x-clip neo-ui">
+      <body className={`${grotesk.variable} ${spaceMono.variable} antialiased overflow-x-clip neo-ui`}>
         <ThemeProvider>
           <LanguageProvider>
             <Navbar />
@@ -52,7 +51,10 @@ export default function RootLayout({
             </div>
           </LanguageProvider>
         </ThemeProvider>
-      </body>
+      {/* impeccable-live-start */}
+<script src="http://localhost:8400/live.js?token=acba4c07-084b-4f61-8a54-801ca52995a1"></script>
+{/* impeccable-live-end */}
+</body>
     </html>
   );
 }
